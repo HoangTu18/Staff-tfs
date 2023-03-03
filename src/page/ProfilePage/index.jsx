@@ -11,7 +11,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
+import { useNavigate } from "react-router-dom";
 const ProfilePage = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -41,14 +43,18 @@ const ProfilePage = () => {
           />
         </Badge>
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
+        navigate("/profiledetail");
+      }}>
         <Stack flexDirection="row">
           <AccountCircleRoundedIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Hồ sơ</Box>
         </Stack>
         <ChevronRightRoundedIcon />
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
+        navigate("/setting");
+      }} >
         <Stack flexDirection="row">
           <SettingsIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Cài đặt</Box>

@@ -4,8 +4,10 @@ import LockIcon from "@mui/icons-material/Lock";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Setting = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -21,7 +23,9 @@ const Setting = () => {
         </Box>
       </Stack>
 
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
+        navigate("/changepassword");
+      }}  >
         <Stack flexDirection="row">
           <LockIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Đổi mật khẩu</Box>

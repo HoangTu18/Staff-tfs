@@ -4,7 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 const ChangePassword = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -42,7 +44,9 @@ const ChangePassword = () => {
         </Stack>
         <LockIcon style={styles.icons} />
       </Stack>
-      <Box sx={{ margin: "auto", marginLeft: "20%" }}>
+      <Box sx={{ margin: "auto", marginLeft: "20%" }} onClick={() => {
+        navigate("/success");
+      }}   >
         <Button
           style={{
             backgroundColor: "#D83A3A",

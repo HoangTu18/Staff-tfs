@@ -10,6 +10,7 @@ import Profile from "./page/ProfilePage/component/Profile/Profile";
 import EditProfile from "./page/ProfilePage/component/EditProfile/EditProfile";
 import Setting from "./page/ProfilePage/component/ChangePassword/Setting";
 import ChangePassword from "./page/ProfilePage/component/ChangePassword/ChangePassword";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import Success from "./page/ProfilePage/component/ChangePassword/success/Success";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
@@ -17,20 +18,24 @@ import Success from "./page/ProfilePage/component/ChangePassword/success/Success
 function App() {
   return (
     <div>
-      <AppNavigation />
-      {/* <Routes> */}
-      {/* <Route path="/login" element={<Login />} /> */}
-      {/* <Route path="/home" element={<HomePage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-      </Routes> */}
-      {/* <Profile /> */}
-      {/* <EditProfile /> */}
-      {/* <Setting /> */}
-      {/* <ChangePassword /> */}
-      <Success />
+      <Router>
+        <AppNavigation />
+        <Routes>
+          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="home" element={<HomePage />} />
+          <Route path="" element={<HomePage />} />
+          <Route path="order" element={<OrderPage />} />
+          <Route path="menu" element={<MenuPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profiledetail" element={<Profile />} />
+          <Route path="editprofile" element={<EditProfile />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="changepassword" element={<ChangePassword />} />
+          <Route path="success" element={<Success />} />
+        </Routes>
+
+      </Router>
+
     </div>
   );
 }

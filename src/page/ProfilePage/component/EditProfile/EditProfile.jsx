@@ -3,8 +3,10 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import React from "react";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -68,6 +70,9 @@ const EditProfile = () => {
             borderRadius: "20px",
           }}
           variant="contained"
+          onClick={() => {
+            navigate("/success");
+          }}
         >
           Xác nhận
         </Button>

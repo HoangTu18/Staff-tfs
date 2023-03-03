@@ -5,7 +5,9 @@ import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -17,7 +19,9 @@ const Profile = () => {
       <Stack style={styles.avatarContainer} direction="row" spacing={2}>
         Phạm Hoàng Tú
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
+        navigate("/editprofile");
+      }}  >
         <Stack flexDirection="row">
           <PhoneAndroidIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>0799966079</Box>

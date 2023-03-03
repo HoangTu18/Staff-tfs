@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
 import Lottie from "lottie-react";
+import { useNavigate } from "react-router-dom";
 import successIcon from "./79952-successful.json";
 const Success = () => {
+  const navigate = useNavigate();
   return (
     <Box
       style={{
@@ -36,6 +38,9 @@ const Success = () => {
           backgroundColor: "#d83a3a",
           borderRadius: 15,
           color: "white"
+        }}
+        onClick={() => {
+          navigate("/profile");
         }}
       >
         Xác nhận
