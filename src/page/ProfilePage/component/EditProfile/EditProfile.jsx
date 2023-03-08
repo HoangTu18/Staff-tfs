@@ -1,8 +1,8 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import React from "react";
-import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {

@@ -13,6 +13,7 @@ import ChangePassword from "./page/ProfilePage/component/ChangePassword/ChangePa
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Success from "./page/ProfilePage/component/ChangePassword/success/Success";
+import CreateOrder from "./page/OrderPage/CreateOrder";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="home" element={<HomePage />} />
           <Route path="" element={<HomePage />} />
           <Route path="order" element={<OrderPage />} />
+          <Route path="createorder" element={<CreateOrder />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="profiledetail" element={<Profile />} />
@@ -33,9 +35,7 @@ function App() {
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="success" element={<Success />} />
         </Routes>
-
       </Router>
-
     </div>
   );
 }

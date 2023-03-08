@@ -43,18 +43,26 @@ const ProfilePage = () => {
           />
         </Badge>
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
-        navigate("/profiledetail");
-      }}>
+      <Stack
+        flexDirection="row"
+        style={styles.optionStyle}
+        onClick={() => {
+          navigate("/profiledetail");
+        }}
+      >
         <Stack flexDirection="row">
           <AccountCircleRoundedIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Hồ sơ</Box>
         </Stack>
         <ChevronRightRoundedIcon />
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
-        navigate("/setting");
-      }} >
+      <Stack
+        flexDirection="row"
+        style={styles.optionStyle}
+        onClick={() => {
+          navigate("/setting");
+        }}
+      >
         <Stack flexDirection="row">
           <SettingsIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Cài đặt</Box>
