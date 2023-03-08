@@ -14,6 +14,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Success from "./page/ProfilePage/component/ChangePassword/success/Success";
 import OrderDetail from "./page/OrderDetailPage";
+import CreateOrder from "./page/OrderPage/CreateOrder";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
             <Route path=":id" element={<OrderDetail />} />
             <Route path="" element={<OrderPage />} />
           </Route>
+          <Route path="order" element={<OrderPage />} />
+          <Route path="createorder" element={<CreateOrder />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="profiledetail" element={<Profile />} />

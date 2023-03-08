@@ -21,6 +21,28 @@ const HomePage = () => {
           <p style={styles.text}>0898989898 </p>
         </Box>
       </Box>
+      <div className="order-page">
+        <div className="order-item" style={{ width: "95%" }}>
+          <div className="left">
+            <h3 className="orderID">Doanh thu</h3>
+            <h3 className="order-customer">0.00 VND</h3>
+          </div>
+          <hr className="space-hr" />
+          <div className="right">
+            <h3 className="price">Tổng đơn hàng</h3>
+            <h3
+              className="order-customer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              0
+            </h3>
+          </div>
+        </div>
+      </div>
     </Box>
   );
 };
@@ -35,11 +57,9 @@ const styles = {
     borderRadius: "15px",
     margin: "16px 0 16px 0",
   },
-  contentBox:{
+  contentBox: {
     margin: "8px 0 0 0",
   },
-  text: {
-
-  },
+  text: {},
 };
 export default HomePage;

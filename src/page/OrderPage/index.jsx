@@ -2,6 +2,8 @@ import Box from "@mui/material/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import { useNavigate } from "react-router-dom";
 const count = 3;
 const OrderPage = () => {
@@ -18,8 +20,17 @@ const OrderPage = () => {
     >
       <div className="order-page">
         <div className="order-title">
-          <h2>Đơn đặt hàng</h2>
-          <FontAwesomeIcon icon={faPlus} />
+          <div className="order-title">
+            <ArrowBackIcon />
+            <h2>Đơn đặt hàng</h2>
+          </div>
+          <FontAwesomeIcon
+            icon={faPlus}
+            style={{}}
+            onClick={() => {
+              navigate("/createorder");
+            }}
+          />
         </div>
         <div className="order-calender">
           <input type={"date"} className="date" />
