@@ -1,14 +1,19 @@
 import Box from "@mui/material/Box";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus,faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
 const count = 3;
 const OrderPage = () => {
+  const navigate = useNavigate();
+  const goToOrderDetailPage = (id) => {
+    navigate(`/order/${id}`);
+  };
+
   return (
     <Box
       sx={{
         width: "100%",
-        
       }}
     >
       <div className="order-page">
@@ -21,7 +26,12 @@ const OrderPage = () => {
         </div>
         <h2 className="order-sum">Tổng đơn hàng: {count}</h2>
         <div className="order-list">
-          <div className="order-item">
+          <div
+            className="order-item"
+            onClick={() => {
+              goToOrderDetailPage(17);
+            }}
+          >
             <div className="left">
               <h3 className="orderID">#17</h3>
               <h3 className="order-customer">Phạm Hoàng Tú</h3>
@@ -30,12 +40,17 @@ const OrderPage = () => {
             <div className="right">
               <h3 className="price">400.000 VND</h3>
               <div className="confirmnative">
-              <FontAwesomeIcon icon={faCircleExclamation} />
-              <span>Chờ xác nhận</span>
+                <FontAwesomeIcon icon={faCircleExclamation} />
+                <span>Chờ xác nhận</span>
               </div>
             </div>
           </div>
-          <div className="order-item">
+          <div
+            className="order-item"
+            onClick={() => {
+              goToOrderDetailPage(17);
+            }}
+          >
             <div className="left">
               <h3 className="orderID">#17</h3>
               <h3 className="order-customer">Phạm Hoàng Tú</h3>
@@ -44,12 +59,17 @@ const OrderPage = () => {
             <div className="right">
               <h3 className="price">400.000 VND</h3>
               <div className="confirmnative">
-              <FontAwesomeIcon icon={faCircleExclamation} />
-              <span>Chờ xác nhận</span>
+                <FontAwesomeIcon icon={faCircleExclamation} />
+                <span>Chờ xác nhận</span>
               </div>
             </div>
           </div>
-          <div className="order-item">
+          <div
+            className="order-item"
+            onClick={() => {
+              goToOrderDetailPage(17);
+            }}
+          >
             <div className="left">
               <h3 className="orderID">#17</h3>
               <h3 className="order-customer">Phạm Hoàng Tú</h3>
@@ -58,14 +78,13 @@ const OrderPage = () => {
             <div className="right">
               <h3 className="price">400.000 VND</h3>
               <div className="confirmnative">
-              <FontAwesomeIcon icon={faCircleExclamation} />
-              <span>Chờ xác nhận</span>
+                <FontAwesomeIcon icon={faCircleExclamation} />
+                <span>Chờ xác nhận</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
     </Box>
   );
 };
