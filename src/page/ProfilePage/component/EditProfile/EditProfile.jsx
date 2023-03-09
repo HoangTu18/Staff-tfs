@@ -29,38 +29,28 @@ const EditProfile = () => {
         <span style={{ fontWeight: "bold" }}>Họ và tên</span>
       </Box>
       <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>Phạm Hoàng Tú</Box>
-        </Stack>
+        <input value="Phạm Hoàng Tú" style={styles.input} />
       </Stack>
 
       <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
         <span style={{ fontWeight: "bold" }}>Email</span>
       </Box>
       <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>
-            phoangtu2000@gmail.com
-          </Box>
-        </Stack>
+        <input value="phoangtu2000@gmail.com" style={styles.input} />
       </Stack>
 
       <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
         <span style={{ fontWeight: "bold" }}>Số điện thoại</span>
       </Box>
       <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>0799966079</Box>
-        </Stack>
+        <input value="0799966079" style={styles.input} />
       </Stack>
 
       <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
         <span style={{ fontWeight: "bold" }}>Ngày Sinh</span>
       </Box>
       <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>01/08/2000</Box>
-        </Stack>
+        <input value="01/08/2000" style={styles.input} />
       </Stack>
       <Box sx={{ margin: "auto", marginLeft: "20%" }}>
         <Button
@@ -113,6 +103,14 @@ const styles = {
   },
   icons: {
     color: "#D83A3A",
+  },
+  input: {
+    border: "none",
+    fontSize: "16px",
+    width: "100%",
+    backgroundColor: "transparent",
+    margin: "auto",
+    marginLeft: "10px",
   },
 };
 
