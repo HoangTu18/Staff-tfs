@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./Setting.css";
 
 const Setting = () => {
   const navigate = useNavigate();
@@ -12,26 +13,35 @@ const Setting = () => {
     <Box
       sx={{
         width: "100%",
-        paddingLeft: "16px",
-        paddingRight: "16px",
       }}
     >
-      <Stack>
-        <Box style={{ marginBottom: "35px", fontSize: "18px" }}>
-          <ArrowBackIcon />
-          <span style={{ marginBottom: "5px" }}>Cài đặt</span>
-        </Box>
-      </Stack>
+      <div className="order-page">
+        <div className="order-title">
+          <div
+            className="order-title-detail"
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            <img src="/images/back-icon.svg" alt="" />
+            <h2>Hồ sơ</h2>
+          </div>
+        </div>
 
-      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
-        navigate("/changepassword");
-      }}  >
-        <Stack flexDirection="row">
-          <LockIcon style={styles.icons} />
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>Đổi mật khẩu</Box>
+        <Stack
+          flexDirection="row"
+          style={styles.optionStyle}
+          onClick={() => {
+            navigate("/changepassword");
+          }}
+        >
+          <Stack flexDirection="row">
+            <LockIcon style={styles.icons} />
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>Đổi mật khẩu</Box>
+          </Stack>
+          <ChevronRightRoundedIcon style={styles.icons} />
         </Stack>
-        <ChevronRightRoundedIcon style={styles.icons} />
-      </Stack>
+      </div>
     </Box>
   );
 };

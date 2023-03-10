@@ -5,59 +5,68 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./ChangePassword.css";
 const ChangePassword = () => {
   const navigate = useNavigate();
   return (
     <Box
       sx={{
         width: "100%",
-        paddingLeft: "16px",
-        paddingRight: "16px",
       }}
     >
-      <Stack>
-        <Box style={{ marginBottom: "35px", fontSize: "18px" }}>
-          <ArrowBackIcon />
-          <span style={{ marginBottom: "5px" }}>Đổi mật khẩu</span>
-        </Box>
-      </Stack>
+      <div className="order-page">
+        <div className="order-title">
+          <div
+            className="order-title-detail"
+            onClick={() => {
+              navigate("/setting");
+            }}
+          >
+            <img src="/images/back-icon.svg" alt="" />
+            <h2>Đổi mật khẩu</h2>
+          </div>
+        </div>
 
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>Mật khẩu cũ</Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <Stack flexDirection="row">
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>Mật khẩu cũ</Box>
+          </Stack>
+          <LockIcon style={styles.icons} />
         </Stack>
-        <LockIcon style={styles.icons} />
-      </Stack>
 
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>Mật khẩu mới</Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <Stack flexDirection="row">
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>Mật khẩu mới</Box>
+          </Stack>
+          <LockIcon style={styles.icons} />
         </Stack>
-        <LockIcon style={styles.icons} />
-      </Stack>
 
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>
-            Nhập lại mật khẩu mới
-          </Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <Stack flexDirection="row">
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>
+              Nhập lại mật khẩu mới
+            </Box>
+          </Stack>
+          <LockIcon style={styles.icons} />
         </Stack>
-        <LockIcon style={styles.icons} />
-      </Stack>
-      <Box sx={{ margin: "auto", marginLeft: "20%" }} onClick={() => {
-        navigate("/success");
-      }}   >
-        <Button
-          style={{
-            backgroundColor: "#D83A3A",
-            width: "14rem",
-            borderRadius: "20px",
+        <Box
+          sx={{ margin: "auto", marginLeft: "20%" }}
+          onClick={() => {
+            navigate("/success");
           }}
-          variant="contained"
         >
-          Xác nhận
-        </Button>
-      </Box>
+          <Button
+            style={{
+              backgroundColor: "#D83A3A",
+              width: "14rem",
+              borderRadius: "20px",
+            }}
+            variant="contained"
+          >
+            Xác nhận
+          </Button>
+        </Box>
+      </div>
     </Box>
   );
 };

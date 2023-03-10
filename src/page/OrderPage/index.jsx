@@ -20,17 +20,20 @@ const OrderPage = () => {
     >
       <div className="order-page">
         <div className="order-title">
-          <div className="order-title">
-            <ArrowBackIcon />
-            <h2>Đơn đặt hàng</h2>
+          <div className="order-title-detail" style={{ width: "100%" }}>
+            <div style={{ display: "flex", width: "100%" }}>
+              <img src="/images/back-icon.svg" alt="" />
+              <h2> Đơn đặt hàng</h2>
+            </div>
+            <div style={{ fontSize: "21px" }}>
+              <FontAwesomeIcon
+                icon={faPlus}
+                onClick={() => {
+                  navigate("/createorder");
+                }}
+              />
+            </div>
           </div>
-          <FontAwesomeIcon
-            icon={faPlus}
-            style={{}}
-            onClick={() => {
-              navigate("/createorder");
-            }}
-          />
         </div>
         <div className="order-calender">
           <input type={"date"} className="date" />

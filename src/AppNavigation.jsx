@@ -12,7 +12,11 @@ export default function AppNavigation() {
 
   return (
     <BottomNavigation
-      sx={{ width: "100%", position: "absolute", bottom: 0 }}
+      sx={{
+        width: "100%",
+        position: "absolute",
+        bottom: 0,
+      }}
       value={value}
       onChange={handleChange}
     >

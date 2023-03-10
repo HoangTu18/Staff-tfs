@@ -4,69 +4,75 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./EditProfile.css";
 const EditProfile = () => {
   const navigate = useNavigate();
   return (
     <Box
       sx={{
         width: "100%",
-        paddingLeft: "16px",
-        paddingRight: "16px",
       }}
     >
-      <Stack>
+      <div className="order-page">
+        <div className="order-title">
+          <div
+            className="order-title-detail"
+            onClick={() => {
+              navigate("/profiledetail");
+            }}
+          >
+            <img src="/images/back-icon.svg" alt="" />
+            <h2>Cập nhật thông tin cá nhân</h2>
+          </div>
+        </div>
+
+        <Stack style={styles.avatarContainer} direction="row" spacing={2}>
+          <span style={{ fontWeight: "bold" }}> Phạm Hoàng Tú</span>
+        </Stack>
+
         <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
-          <ArrowBackIcon />
-          <span style={{ marginBottom: "5px" }}>Hồ sơ</span>
+          <span style={{ fontWeight: "bold" }}>Họ và tên</span>
         </Box>
-      </Stack>
-      <Stack style={styles.avatarContainer} direction="row" spacing={2}>
-        <span style={{ fontWeight: "bold" }}> Phạm Hoàng Tú</span>
-      </Stack>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <input value="Phạm Hoàng Tú" style={styles.input} />
+        </Stack>
 
-      <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
-        <span style={{ fontWeight: "bold" }}>Họ và tên</span>
-      </Box>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <input value="Phạm Hoàng Tú" style={styles.input} />
-      </Stack>
+        <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
+          <span style={{ fontWeight: "bold" }}>Email</span>
+        </Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <input value="phoangtu2000@gmail.com" style={styles.input} />
+        </Stack>
 
-      <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
-        <span style={{ fontWeight: "bold" }}>Email</span>
-      </Box>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <input value="phoangtu2000@gmail.com" style={styles.input} />
-      </Stack>
+        <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
+          <span style={{ fontWeight: "bold" }}>Số điện thoại</span>
+        </Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <input value="0799966079" style={styles.input} />
+        </Stack>
 
-      <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
-        <span style={{ fontWeight: "bold" }}>Số điện thoại</span>
-      </Box>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <input value="0799966079" style={styles.input} />
-      </Stack>
-
-      <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
-        <span style={{ fontWeight: "bold" }}>Ngày Sinh</span>
-      </Box>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <input value="01/08/2000" style={styles.input} />
-      </Stack>
-      <Box sx={{ margin: "auto", marginLeft: "20%" }}>
-        <Button
-          style={{
-            backgroundColor: "#D83A3A",
-            width: "14rem",
-            borderRadius: "20px",
-          }}
-          variant="contained"
-          onClick={() => {
-            navigate("/success");
-          }}
-        >
-          Xác nhận
-        </Button>
-      </Box>
+        <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
+          <span style={{ fontWeight: "bold" }}>Ngày Sinh</span>
+        </Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <input value="01/08/2000" style={styles.input} />
+        </Stack>
+        <Box sx={{ margin: "auto", marginLeft: "20%" }}>
+          <Button
+            style={{
+              backgroundColor: "#D83A3A",
+              width: "14rem",
+              borderRadius: "20px",
+            }}
+            variant="contained"
+            onClick={() => {
+              navigate("/success");
+            }}
+          >
+            Xác nhận
+          </Button>
+        </Box>
+      </div>
     </Box>
   );
 };
