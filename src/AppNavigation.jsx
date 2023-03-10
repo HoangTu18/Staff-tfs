@@ -14,7 +14,7 @@ export default function AppNavigation() {
     <BottomNavigation
       sx={{
         width: "100%",
-        position: "absolute",
+        position: "fixed",
         bottom: 0,
       }}
       value={value}

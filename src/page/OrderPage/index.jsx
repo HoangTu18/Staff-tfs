@@ -55,7 +55,7 @@ const OrderPage = () => {
               <h3 className="price">400.000 VND</h3>
               <div className="confirmnative">
                 <FontAwesomeIcon icon={faCircleExclamation} />
-                <span>Chờ xác nhận</span>
+                <span>Đã xác nhận</span>
               </div>
             </div>
           </div>

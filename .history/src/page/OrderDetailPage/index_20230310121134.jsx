@@ -94,8 +94,7 @@ function OrderDetail() {
       <div
         style={{
           padding: "15px 0",
-          margin: "auto",
-          marginLeft: "20%",
+          width: "100%",
         }}
       >
         <Button

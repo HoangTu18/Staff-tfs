@@ -93,7 +93,7 @@ function OrderDetail() {
       </div>
       <div
         style={{
-          padding: "15px 0",
+          padding: "20px 0",
           margin: "auto",
           marginLeft: "20%",
         }}

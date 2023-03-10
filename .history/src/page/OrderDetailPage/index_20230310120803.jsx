@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import StateList from "../../component/ListState";
-import Button from "@mui/material/Button";
 import "./index.scss";
 function OrderDetail() {
   const { id } = useParams();
@@ -91,23 +90,16 @@ function OrderDetail() {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          padding: "15px 0",
-          margin: "auto",
-          marginLeft: "20%",
-        }}
-      >
-        <Button
+      <div>
+        <button
           style={{
-            backgroundColor: "#D83A3A",
-            width: "14rem",
-            borderRadius: "20px",
+            padding: "10px 10px",
+            display: "flex",
+            justifyContent: "space-between",
           }}
-          variant="contained"
         >
-          Xác nhận
-        </Button>
+          Đã đóng gói
+        </button>
       </div>
     </div>
   );
