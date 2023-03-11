@@ -15,11 +15,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Success from "./page/ProfilePage/component/ChangePassword/success/Success";
 import OrderDetail from "./page/OrderDetailPage";
 import CreateOrder from "./page/OrderPage/CreateOrder";
+import Loading from "./component/Loading/Loading";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
   return (
     <div>
+      {/* <Loading /> */}
       <Router>
         <AppNavigation />
         <Routes>

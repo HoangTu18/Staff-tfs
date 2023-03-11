@@ -5,6 +5,9 @@ import "./index.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getOrderRequest } from "./orderSlice";
 const count = 3;
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -12,6 +15,13 @@ const OrderPage = () => {
     navigate(`/order/${id}`);
   };
 
+  const dispatch = useDispatch();
+  const listOrder = useSelector((state) => state.orderManage.listOrder);
+
+  useEffect(() => {
+    dispatch(getOrderRequest());
+  }, []);
+  console.log(listOrder);
   return (
     <Box
       sx={{
@@ -35,65 +45,35 @@ const OrderPage = () => {
         <div className="order-calender">
           <input type={"date"} className="date" />
         </div>
-        <h2 className="order-sum">Tổng đơn hàng: {count}</h2>
+        <h2 className="order-sum">Tổng đơn hàng: {listOrder.length}</h2>
         <div className="order-list">
-          <div
-            className="order-item"
-            onClick={() => {
-              goToOrderDetailPage(17);
-            }}
-          >
-            <div className="left">
-              <h3 className="orderID">#17</h3>
-              <h3 className="order-customer">Phạm Hoàng Tú</h3>
-              <div className="order-products">{count} sản phẩm</div>
-            </div>
-            <div className="right">
-              <h3 className="price">400.000 VND</h3>
-              <div className="confirmnative">
-                <FontAwesomeIcon icon={faCircleExclamation} />
-                <span>Chờ xác nhận</span>
+          {listOrder.length === 0 ? (
+            <h2>Hiện không có đơn hàng</h2>
+          ) : (
+            listOrder.map((item) => (
+              <div
+                className="order-item"
+                onClick={() => {
+                  goToOrderDetailPage(item.id);
+                }}
+              >
+                <div className="left">
+                  <h3 className="orderID">#{item.id}</h3>
+                  <h3 className="order-customer">{item.customerId}</h3>
+                  <div className="order-products">
+                    {item.totalQuantity} sản phẩm
+                  </div>
+                </div>
+                <div className="right">
+                  <h3 className="price">{item.totalPrice}</h3>
+                  <div className="confirmnative">
+                    <FontAwesomeIcon icon={faCircleExclamation} />
+                    <span>{item.status}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            onClick={() => {
-              goToOrderDetailPage(17);
-            }}
-          >
-            <div className="left">
-              <h3 className="orderID">#17</h3>
-              <h3 className="order-customer">Phạm Hoàng Tú</h3>
-              <div className="order-products">{count} sản phẩm</div>
-            </div>
-            <div className="right">
-              <h3 className="price">400.000 VND</h3>
-              <div className="confirmnative">
-                <FontAwesomeIcon icon={faCircleExclamation} />
-                <span>Chờ xác nhận</span>
-              </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            onClick={() => {
-              goToOrderDetailPage(17);
-            }}
-          >
-            <div className="left">
-              <h3 className="orderID">#17</h3>
-              <h3 className="order-customer">Phạm Hoàng Tú</h3>
-              <div className="order-products">{count} sản phẩm</div>
-            </div>
-            <div className="right">
-              <h3 className="price">400.000 VND</h3>
-              <div className="confirmnative">
-                <FontAwesomeIcon icon={faCircleExclamation} />
-                <span>Chờ xác nhận</span>
-              </div>
-            </div>
-          </div>
+            ))
+          )}
         </div>
       </div>
     </Box>
