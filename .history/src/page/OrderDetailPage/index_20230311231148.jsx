@@ -7,7 +7,6 @@ import { formatToVND } from "../../utils/numberUtil";
 import { getOrderRequest } from "../OrderPage/orderSlice";
 import Button from "@mui/material/Button";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./index.scss";
 function OrderDetail() {
   const { id } = useParams();
@@ -76,7 +75,6 @@ function OrderDetail() {
             <div className="pay">
               <div className="icon">
                 <img src="/images/wait-icon.svg" alt="" />
-                {/* <FontAwesomeIcon icon="fa-solid fa-timer" /> */}
               </div>
               <p className="unpay">Chưa thanh toán</p>
             </div>

@@ -75,7 +75,7 @@ function OrderDetail() {
           ) : (
             <div className="pay">
               <div className="icon">
-                <img src="/images/wait-icon.svg" alt="" />
+                {/* <img src="/images/wait-icon.svg" alt="" /> */}
                 {/* <FontAwesomeIcon icon="fa-solid fa-timer" /> */}
               </div>
               <p className="unpay">Chưa thanh toán</p>

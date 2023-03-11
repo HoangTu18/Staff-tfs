@@ -23,7 +23,6 @@ function App() {
     <div>
       {/* <Loading /> */}
       <Router>
-        <AppNavigation />
         <Routes>
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="home" element={<HomePage />} />
@@ -42,6 +41,7 @@ function App() {
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="success" element={<Success />} />
         </Routes>
+        <AppNavigation />
       </Router>
     </div>
   );

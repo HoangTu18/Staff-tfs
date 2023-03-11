@@ -45,9 +45,9 @@ const OrderPage = () => {
             </div>
           </div>
         </div>
-        <div className="order-calender">
+        {/* <div className="order-calender">
           <input type={"date"} className="date" />
-        </div>
+        </div> */}
         <h2 className="order-sum">Tổng đơn hàng: {listOrder.length}</h2>
         <div className="order-list">
           {listOrder.length === 0 ? (
