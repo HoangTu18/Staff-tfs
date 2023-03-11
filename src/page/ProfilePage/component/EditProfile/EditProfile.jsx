@@ -83,6 +83,7 @@ const styles = {
     marginTop: 50,
     marginBottom: 50,
     fontSize: 26,
+    paddingBottom: "50px",
   },
   imageStyle: {
     display: "block",

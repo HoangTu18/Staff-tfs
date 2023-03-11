@@ -81,7 +81,7 @@ const ProfilePage = () => {
           <InfoRoundedIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Về ứng dụng</Box>
         </Stack>
-        <ChevronRightRoundedIcon style={styles.icons} />
+        <ChevronRightRoundedIcon />
       </Stack>
       <Stack flexDirection="row" style={styles.optionStyle}>
         <Stack flexDirection="row">
