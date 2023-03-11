@@ -39,7 +39,7 @@ const ProfilePage = () => {
           <Avatar
             style={styles.imageStyle}
             alt="Travis Howard"
-            src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/317953489_967353554226465_1873988913127309004_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=OP9FMZ3vcw4AX8QXnHO&tn=Tgz8CvSewJvXkLNE&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAig6cnWOqD_Fto87xr1XPQCgWG2IpXF0_tk3Pu4mEPug&oe=640305EC"
+            src="/images/avt.jpg"
           />
         </Badge>
       </Stack>

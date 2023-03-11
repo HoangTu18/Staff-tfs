@@ -1,0 +1,42 @@
+.order-page {
+  padding: 20px;
+}
+.order-page .order-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.order-page .order-calender .date {
+  padding: 5px 20px;
+  border-radius: 6px;
+  margin: 20px;
+  width: calc(100% - 40px);
+  font-size: 15px;
+}
+.order-page .order-sum {
+  padding-bottom: 10px;
+  border-bottom: solid 2px gainsboro;
+}
+.order-page .order-item {
+  margin: 20px;
+  padding: 10px;
+  width: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  border: solid 1px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+}
+.order-page .order-item .orderID {
+  color: #d20000;
+}
+.order-page .order-item .confirmnative {
+  color: #ffd43b;
+  font-size: 11px;
+}
+.order-page .order-item .order-customer,
+.order-page .order-item .price {
+  padding: 7px 0;
+  font-weight: 500;
+}

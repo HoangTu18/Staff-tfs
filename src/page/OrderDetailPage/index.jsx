@@ -5,6 +5,7 @@ import StateList from "../../component/ListState";
 import { formatStringToDate, formatStringToTime } from "../../utils/DateUtil";
 import { formatToVND } from "../../utils/numberUtil";
 import { getOrderRequest } from "../OrderPage/orderSlice";
+import Button from "@mui/material/Button";
 import "./index.scss";
 function OrderDetail() {
   const { id } = useParams();
@@ -120,6 +121,24 @@ function OrderDetail() {
             <span>{formatToVND(order.totalPrice)}</span>
           </div>
         </div>
+      </div>
+      <div
+        style={{
+          padding: "15px 0",
+          margin: "auto",
+          marginLeft: "20%",
+        }}
+      >
+        <Button
+          style={{
+            backgroundColor: "#D83A3A",
+            width: "14rem",
+            borderRadius: "20px",
+          }}
+          variant="contained"
+        >
+          Xác nhận
+        </Button>
       </div>
     </div>
   );

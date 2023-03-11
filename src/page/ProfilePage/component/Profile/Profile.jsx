@@ -12,38 +12,53 @@ const Profile = () => {
     <Box
       sx={{
         width: "100%",
-        paddingLeft: "16px",
-        paddingRight: "16px",
       }}
     >
-      <Stack style={styles.avatarContainer} direction="row" spacing={2}>
-        Phạm Hoàng Tú
-      </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle} onClick={() => {
-        navigate("/editprofile");
-      }}  >
-        <Stack flexDirection="row">
-          <PhoneAndroidIcon style={styles.icons} />
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>0799966079</Box>
+      <div className="order-page">
+        <div className="order-title">
+          <div
+            className="order-title-detail"
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            <img src="/images/back-icon.svg" alt="" />
+            <h2>Hồ sơ</h2>
+          </div>
+        </div>
+        <Stack style={styles.avatarContainer} direction="row" spacing={2}>
+          Phạm Hoàng Tú
         </Stack>
-        <EditIcon />
-      </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <MailIcon style={styles.icons} />
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>
-            phoangtu2000@gmail.com
-          </Box>
+        <Stack
+          flexDirection="row"
+          style={styles.optionStyle}
+          onClick={() => {
+            navigate("/editprofile");
+          }}
+        >
+          <Stack flexDirection="row">
+            <PhoneAndroidIcon style={styles.icons} />
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>0799966079</Box>
+          </Stack>
+          <EditIcon />
         </Stack>
-        <EditIcon />
-      </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
-        <Stack flexDirection="row">
-          <CakeIcon style={styles.icons} />
-          <Box sx={{ margin: "auto", marginLeft: "10px" }}>01/08/2000</Box>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <Stack flexDirection="row">
+            <MailIcon style={styles.icons} />
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>
+              phoangtu2000@gmail.com
+            </Box>
+          </Stack>
+          <EditIcon />
         </Stack>
-        <EditIcon />
-      </Stack>
+        <Stack flexDirection="row" style={styles.optionStyle}>
+          <Stack flexDirection="row">
+            <CakeIcon style={styles.icons} />
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>01/08/2000</Box>
+          </Stack>
+          <EditIcon />
+        </Stack>
+      </div>
     </Box>
   );
 };
