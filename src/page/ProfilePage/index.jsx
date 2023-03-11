@@ -99,6 +99,7 @@ const styles = {
     justifyContent: "center",
     marginTop: 50,
     marginBottom: 50,
+    paddingBottom: "50px",
   },
   imageStyle: {
     display: "block",
