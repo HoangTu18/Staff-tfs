@@ -3,6 +3,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { Home2, Note, Book, ProfileCircle } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+
 export default function AppNavigation() {
   const [value, setValue] = useState("home");
   const navigate = useNavigate();
