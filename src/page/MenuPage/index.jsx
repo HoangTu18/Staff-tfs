@@ -10,7 +10,6 @@ const MenuPage = () => {
         width: "100%",
         paddingLeft: "8px",
         paddingRight: "8px",
-        paddingBottom: "50px",
       }}
     >
       <Box sx={{ textAlign: "center", color: "#d83a3a", marginY: "18px" }}>
