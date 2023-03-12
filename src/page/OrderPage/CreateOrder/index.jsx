@@ -2,6 +2,7 @@ import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { dateCurrent } from "../../../utils/DateUtil";
 import "./index.css";
 
 const CreateOrder = () => {
@@ -27,7 +28,7 @@ const CreateOrder = () => {
           </div>
         </div>
         <div className="order-calender">
-          <p className="date">Ngày tạo đơn: 19-02-2023</p>
+          <p className="date">Ngày tạo đơn:{dateCurrent()}</p>
         </div>
         <div className="order-item">
           <div className="left">
@@ -45,7 +46,11 @@ const CreateOrder = () => {
         </div>
         <div className="order-item">
           <PhoneAndroidIcon className="icon" />
-          <input className="phonenumber-customer" placeholder="Số điện thoại" />
+          <input
+            type="number"
+            className="phonenumber-customer"
+            placeholder="Số điện thoại"
+          />
         </div>
         <div className="order-calender">
           <p className="date">Phương thức thanh toán</p>
