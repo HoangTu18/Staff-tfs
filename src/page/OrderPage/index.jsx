@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getListCustomerRequest, getOrderRequest } from "./orderSlice";
+import { ORDER } from "../../utils/constant";
 const OrderPage = () => {
   const navigate = useNavigate();
   const goToOrderDetailPage = (data) => {
-    localStorage.setItem("ORDER", JSON.stringify(data));
+    localStorage.setItem(ORDER, JSON.stringify(data));
     navigate(`/order/${data.id}`);
   };
   const dispatch = useDispatch();

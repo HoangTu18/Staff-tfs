@@ -4,3 +4,5 @@ export const API_URL =
 export const STATUS_CODE = {
   SUCCESS: 200,
 };
+
+export const ORDER = "ORDER";

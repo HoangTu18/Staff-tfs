@@ -13,6 +13,7 @@ import {
 import Button from "@mui/material/Button";
 
 import "./index.scss";
+import { ORDER } from "../../utils/constant";
 function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function OrderDetail() {
   };
   const dispatch = useDispatch();
   const ListCustomer = useSelector((state) => state.orderManage.listCustomer);
-  const order = JSON.parse(localStorage.getItem("ORDER"));
+  const order = JSON.parse(localStorage.getItem(ORDER));
 
   useEffect(() => {
     dispatch(getListCustomerRequest());

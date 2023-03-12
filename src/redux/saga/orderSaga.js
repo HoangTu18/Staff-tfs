@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from "../../component/Loading/LoadingSlice";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { orderService } from "../../services/orderService";
-import { STATUS_CODE } from "../../utils/constant";
+import { ORDER, STATUS_CODE } from "../../utils/constant";
 import {
   getOrderRequest,
   getOrderSuccess,
@@ -66,6 +66,7 @@ function* updateOrderStatus(action) {
     });
     if (order.status === STATUS_CODE.SUCCESS) {
       yield put(getOrderSuccess(order.data));
+      localStorage.setItem(ORDER, JSON.stringify(order.data));
     }
     yield put(hideLoading());
   } catch (error) {
