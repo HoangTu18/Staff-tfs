@@ -3,6 +3,8 @@ import * as orderManageSaga from "./orderSaga";
 export default function* rootSaga() {
   yield all([
     orderManageSaga.followActiongetOrders(),
-
+    orderManageSaga.followActiongetCustomer(),
+    orderManageSaga.followActiongetCustomers(),
+    orderManageSaga.followActionUpdateOrderStatus(),
   ]);
 }
