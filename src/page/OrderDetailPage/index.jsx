@@ -17,13 +17,14 @@ import { ORDER } from "../../utils/constant";
 function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  let order = JSON.parse(localStorage.getItem(ORDER));
+  console.log("re-Render");
 
   const backToOrderPage = () => {
     navigate("/order");
   };
   const dispatch = useDispatch();
   const ListCustomer = useSelector((state) => state.orderManage.listCustomer);
-  const order = JSON.parse(localStorage.getItem(ORDER));
 
   useEffect(() => {
     dispatch(getListCustomerRequest());
@@ -131,9 +132,9 @@ function OrderDetail() {
         {order.itemList.length === 0 ? (
           <h2>Có đơn mà không có sản phẩm đó</h2>
         ) : (
-          order.itemList.map((item) => {
+          order.itemList.map((item,index) => {
             return (
-              <div className="box" key={item.id}>
+              <div className="box" key={index}>
                 <div className="image">
                   <img src={item.image} alt="" />
                 </div>

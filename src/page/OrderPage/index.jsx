@@ -60,9 +60,9 @@ const OrderPage = () => {
           {listOrder.length === 0 ? (
             <h2>Hiện không có đơn hàng</h2>
           ) : (
-            listOrder.map((item) => (
+            listOrder.map((item,index) => (
               <div
-                key={item.id}
+                key={index}
                 className="order-item"
                 onClick={() => {
                   goToOrderDetailPage(item);

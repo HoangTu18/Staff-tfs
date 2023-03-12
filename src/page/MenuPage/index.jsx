@@ -63,7 +63,7 @@ const MenuPage = () => {
         })}
       </select>
 
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%"}}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {listFood.map((item, index) => {
             return (
