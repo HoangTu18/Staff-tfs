@@ -66,10 +66,10 @@ function* updateOrderStatus(action) {
     });
     if (order.status === STATUS_CODE.SUCCESS) {
       yield put(getOrderRequest(8));
+      yield put(getListCustomerRequest());
       localStorage.setItem(ORDER, JSON.stringify(order.data));
-      console.log(order.data);
+      yield put(hideLoading());
     }
-    yield put(hideLoading());
   } catch (error) {
     yield put(getOrderFailure(error));
     yield put(hideLoading());

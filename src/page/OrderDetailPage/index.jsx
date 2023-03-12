@@ -132,7 +132,7 @@ function OrderDetail() {
         {order.itemList.length === 0 ? (
           <h2>Có đơn mà không có sản phẩm đó</h2>
         ) : (
-          order.itemList.map((item,index) => {
+          order.itemList.map((item, index) => {
             return (
               <div className="box" key={index}>
                 <div className="image">
