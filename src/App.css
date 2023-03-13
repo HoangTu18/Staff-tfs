@@ -8,6 +8,10 @@
   color: #d83a3a !important;
 }
 
-/* .css-sxw2zh.Mui-selected {
+.css-sxw2zh.Mui-selected {
   color: #d83a3a !important;
-} */
+}
+
+.MuiButtonBase-root .MuiBottomNavigationAction-root .Mui-selected css-sxw2zh {
+  color: #d83a3a !important;
+}
