@@ -2,26 +2,33 @@ import Box from "@mui/material/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getOrderRequest } from "./orderSlice";
-const count = 3;
+import { getListCustomerRequest, getOrderRequest } from "./orderSlice";
+import { ORDER } from "../../utils/constant";
 const OrderPage = () => {
   const navigate = useNavigate();
-  const goToOrderDetailPage = (id) => {
-    navigate(`/order/${id}`);
+  const goToOrderDetailPage = (data) => {
+    localStorage.setItem(ORDER, JSON.stringify(data));
+    navigate(`/order/${data.id}`);
   };
-
   const dispatch = useDispatch();
   const listOrder = useSelector((state) => state.orderManage.listOrder);
+  const listCustomer = useSelector((state) => state.orderManage.listCustomer);
 
   useEffect(() => {
-    dispatch(getOrderRequest());
-  }, []);
-  console.log(listOrder);
+    dispatch(getOrderRequest(8));
+    dispatch(getListCustomerRequest());
+  }, [dispatch]);
+
+  const getNameByCusId = (id) => {
+    let data = listCustomer.find((item) => item.customerId === +id);
+    if (data !== undefined) {
+      return data.customerName ?? "";
+    }
+    return "";
+  };
   return (
     <Box
       sx={{
@@ -32,7 +39,7 @@ const OrderPage = () => {
         <div className="order-title">
           <div className="order-title-detail" style={{ width: "100%" }}>
             <div style={{ display: "flex", width: "100%" }}>
-              <img src="/images/back-icon.svg" alt="" />
+              {/* <img src="/images/back-icon.svg" alt="" /> */}
               <h2> Đơn đặt hàng</h2>
             </div>
             <div style={{ fontSize: "21px" }}>
@@ -53,16 +60,19 @@ const OrderPage = () => {
           {listOrder.length === 0 ? (
             <h2>Hiện không có đơn hàng</h2>
           ) : (
-            listOrder.map((item) => (
+            listOrder.map((item,index) => (
               <div
+                key={index}
                 className="order-item"
                 onClick={() => {
-                  goToOrderDetailPage(item.id);
+                  goToOrderDetailPage(item);
                 }}
               >
                 <div className="left">
                   <h3 className="orderID">#{item.id}</h3>
-                  <h3 className="order-customer">{item.customerId}</h3>
+                  <h3 className="order-customer">
+                    {getNameByCusId(item.customerId)}
+                  </h3>
                   <div className="order-products">
                     {item.totalQuantity} sản phẩm
                   </div>

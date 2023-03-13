@@ -3,8 +3,12 @@ import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+=======
+import { dateCurrent } from "../../../utils/DateUtil";
+>>>>>>> eb2d616c0759ec2a225b9478575498f7dede1457
 import "./index.css";
 
 const CreateOrder = () => {
@@ -30,7 +34,7 @@ const CreateOrder = () => {
           </div>
         </div>
         <div className="order-calender">
-          <p className="date">Ngày tạo đơn: 19-02-2023</p>
+          <p className="date">Ngày tạo đơn:{dateCurrent()}</p>
         </div>
         <div className="order-item">
           <div className="left">
@@ -48,7 +52,11 @@ const CreateOrder = () => {
         </div>
         <div className="order-item">
           <PhoneAndroidIcon className="icon" />
-          <input className="phonenumber-customer" placeholder="Số điện thoại" />
+          <input
+            type="number"
+            className="phonenumber-customer"
+            placeholder="Số điện thoại"
+          />
         </div>
         <div className="order-calender">
           <p className="date">Phương thức thanh toán</p>

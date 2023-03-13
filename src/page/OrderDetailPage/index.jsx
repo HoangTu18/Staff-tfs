@@ -4,30 +4,80 @@ import { useNavigate, useParams } from "react-router-dom";
 import StateList from "../../component/ListState";
 import { formatStringToDate, formatStringToTime } from "../../utils/DateUtil";
 import { formatToVND } from "../../utils/numberUtil";
-import { getOrderRequest } from "../OrderPage/orderSlice";
+import {
+  getCustomerRequest,
+  getListCustomerRequest,
+  getOrderRequest,
+  updateOrderRequest,
+} from "../OrderPage/orderSlice";
 import Button from "@mui/material/Button";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./index.scss";
+import { ORDER } from "../../utils/constant";
 function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  let order = JSON.parse(localStorage.getItem(ORDER));
+  console.log("re-Render");
 
   const backToOrderPage = () => {
     navigate("/order");
   };
   const dispatch = useDispatch();
-  const order = useSelector((state) =>
-    state.orderManage.listOrder.find((item) => item.id === +id)
-  );
+  const ListCustomer = useSelector((state) => state.orderManage.listCustomer);
+
   useEffect(() => {
-    dispatch(getOrderRequest());
-  }, []);
+    dispatch(getListCustomerRequest());
+  }, [dispatch]);
+
+  const getNameByCusId = (id) => {
+    let data = ListCustomer.find((item) => item.customerId === +id);
+    if (data !== undefined) {
+      return data.customerName ?? "";
+    }
+    return "";
+  };
+
+  const getPhoneByCusId = (id) => {
+    let data = ListCustomer.find((item) => item.customerId === +id);
+    if (data !== undefined) {
+      return data.theAccount.phoneNumber ?? "";
+    }
+    return "";
+  };
+
+  const handleChangeStatus = (order) => {
+    let status = "pending";
+    switch (order.status) {
+      case "pending":
+        status = "accept";
+        break;
+      case "accept":
+        status = "delivery";
+        break;
+      case "delivery":
+        status = "done";
+        break;
+      case "done":
+        status = "done";
+        break;
+      default:
+        break;
+    }
+    const data = {
+      orderId: order.id,
+      staffId: order.staffId,
+      status: status,
+    };
+    console.log(data);
+    dispatch(updateOrderRequest(data));
+  };
+
   return (
     <div className="order-detail">
       <div className="order-detail__title">
         <img src="/images/back-icon.svg" alt="" onClick={backToOrderPage} />
-        <h2>Đơn hàng {order.id}</h2>
+        <h2>Đơn hàng {id}</h2>
       </div>
 
       <div className="order-detail__time">
@@ -46,19 +96,10 @@ function OrderDetail() {
 
       <div className="order-detail__info item">
         <h5>Thông tin đơn hàng</h5>
-
         <div className="box">
-          <h3>Khách hàng: Nguyễn Đình Long</h3>
+          <h3>Khách hàng: {getNameByCusId(order.customerId)}</h3>
           <p>Địa chỉ nhận hàng: {order.deliveryAddress}</p>
-          <span>SĐT: 01234556783</span>
-          {/* <hr />
-
-          <p>Nhân viên bán hàng: Trần Trọng Hiếu</p>
-
-          <span>
-            Tại chi nhánh: 675 D.CMT8, Phường 15, Quận 10, Thành phố Hồ Chí
-            Minh, Việt Nam
-          </span> */}
+          <span>SĐT: {getPhoneByCusId(order.customerId)}</span>
         </div>
       </div>
 
@@ -74,15 +115,15 @@ function OrderDetail() {
             </div>
           ) : (
             <div className="pay">
-              <div className="icon">
+              <div className="iconUnPay">
                 <img src="/images/wait-icon.svg" alt="" />
-                {/* <FontAwesomeIcon icon="fa-solid fa-timer" /> */}
               </div>
               <p className="unpay">Chưa thanh toán</p>
             </div>
           )}
-
-          <p>{order.paymentMethod}</p>
+          <p>
+            {order.paymentMethod === "cash" ? "Tiền mặt" : order.paymentMethod}
+          </p>
         </div>
       </div>
 
@@ -91,19 +132,23 @@ function OrderDetail() {
         {order.itemList.length === 0 ? (
           <h2>Có đơn mà không có sản phẩm đó</h2>
         ) : (
-          <div className="box">
-            <div className="image">
-              <img src="/images/product1.png" alt="" />
-            </div>
-            <div className="info">
-              <div className="">
-                <p>Gà rán KFC</p>
-                <span>25.000</span>
+          order.itemList.map((item, index) => {
+            return (
+              <div className="box" key={index}>
+                <div className="image">
+                  <img src={item.image} alt="" />
+                </div>
+                <div className="info">
+                  <div className="">
+                    <p>{item.name}</p>
+                    <span>{formatToVND(item.subTotal)}</span>
+                  </div>
+                  <span>{formatToVND(item.price)} đ/ cái</span>
+                  <span>Số lượng: {item.quantity} cái</span>
+                </div>
               </div>
-              <span>25.000 đ/ cái</span>
-              <span>Số lượng: 2 cái</span>
-            </div>
-          </div>
+            );
+          })
         )}
       </div>
 
@@ -111,11 +156,11 @@ function OrderDetail() {
         <div className="box">
           <div className="item">
             <span>Đơn giá</span>
-            <span>50.000</span>
+            <span>{formatToVND(order.totalPrice)}</span>
           </div>
           <div className="item">
             <span>Giảm giá</span>
-            <span>0.00</span>
+            <span>{formatToVND(0)}</span>
           </div>
           <div className="item">
             <span>
@@ -139,6 +184,7 @@ function OrderDetail() {
             borderRadius: "20px",
           }}
           variant="contained"
+          onClick={() => handleChangeStatus(order)}
         >
           Xác nhận
         </Button>

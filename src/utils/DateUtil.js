@@ -16,3 +16,9 @@ export const formatStringToTime = (string) => {
   }
   return dateObj;
 };
+
+export const dateCurrent = () => {
+  let date = new Date();
+  let dateObj = moment(date).format("DD-MM-yyyy");
+  return dateObj;
+};

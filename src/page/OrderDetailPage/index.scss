@@ -37,6 +37,18 @@
           width: 10px;
         }
       }
+      .iconUnPay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        // background-color: #5ca046;
+        img {
+          width: 20px;
+        }
+      }
       p {
         margin: 0 !important;
         color: #5ca046;

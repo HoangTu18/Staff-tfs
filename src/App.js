@@ -21,8 +21,8 @@ import Loading from "./component/Loading/Loading";
 function App() {
   return (
     <div>
-      {/* <Loading /> */}
       <Router>
+      <Loading />
         <Routes>
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="home" element={<HomePage />} />
