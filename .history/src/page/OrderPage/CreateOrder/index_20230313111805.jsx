@@ -165,7 +165,7 @@ const CreateOrder = () => {
           style={{
             position: "absolute",
             backgroundColor: "rgba(136,136,136,0.5",
-            width: "100%",
+            width: "350px",
             // height: "130px",
             paddingBottom: "70px",
           }}

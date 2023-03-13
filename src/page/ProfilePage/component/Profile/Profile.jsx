@@ -42,7 +42,13 @@ const Profile = () => {
           </Stack>
           <EditIcon />
         </Stack>
-        <Stack flexDirection="row" style={styles.optionStyle}>
+        <Stack
+          flexDirection="row"
+          style={styles.optionStyle}
+          onClick={() => {
+            navigate("/editprofile");
+          }}
+        >
           <Stack flexDirection="row">
             <MailIcon style={styles.icons} />
             <Box sx={{ margin: "auto", marginLeft: "10px" }}>
@@ -51,7 +57,13 @@ const Profile = () => {
           </Stack>
           <EditIcon />
         </Stack>
-        <Stack flexDirection="row" style={styles.optionStyle}>
+        <Stack
+          flexDirection="row"
+          style={styles.optionStyle}
+          onClick={() => {
+            navigate("/editprofile");
+          }}
+        >
           <Stack flexDirection="row">
             <CakeIcon style={styles.icons} />
             <Box sx={{ margin: "auto", marginLeft: "10px" }}>01/08/2000</Box>

@@ -68,7 +68,7 @@ const CreateOrder = () => {
           <div className="left">
             <h3 className="orderID">Danh sách sản phẩm</h3>
           </div>
-          {/* <div className="right">
+          <div className="right">
             <button
               className="btn btn-danger"
               style={{
@@ -82,12 +82,12 @@ const CreateOrder = () => {
             >
               Thêm sản phẩm
             </button>
-          </div> */}
+          </div>
         </div>
         <div className="order-item">
           <div className="left" style={{ display: "flex" }}>
             <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-            <div style={{ marginLeft: "7px" }}>
+            <div>
               <h3>Hoàng Tú</h3>
               <p>Hoàng Tú - 1 cái</p>
             </div>
@@ -105,108 +105,58 @@ const CreateOrder = () => {
               >
                 1
               </p>
-              <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
+              <AddIcon style={{ fontSize: "14px" }} />
             </div>
           </div>
         </div>
-        <div className="order-item">
-          <div className="left" style={{ display: "flex" }}>
-            <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-            <div style={{ marginLeft: "7px" }}>
-              <h3>Hoàng Tú</h3>
-              <p>Hoàng Tú - 1 cái</p>
-            </div>
-          </div>
-          <div className="right" style={{ alignItems: "end" }}>
-            <p>1.000.000 VND</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              <p
-                style={{
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "15px",
-                }}
-              >
-                1
-              </p>
-              <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-            </div>
-          </div>
-        </div>
-        <div className="order-item">
-          <div className="left" style={{ display: "flex" }}>
-            <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-            <div style={{ marginLeft: "7px" }}>
-              <h3>Hoàng Tú</h3>
-              <p>Hoàng Tú - 1 cái</p>
-            </div>
-          </div>
-          <div className="right" style={{ alignItems: "end" }}>
-            <p>1.000.000 VND</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              <p
-                style={{
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "15px",
-                }}
-              >
-                1
-              </p>
-              <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="create-order">
-        <div
-          style={{
-            position: "absolute",
-            backgroundColor: "rgba(136,136,136,0.5",
-            width: "100%",
-            // height: "130px",
-            paddingBottom: "70px",
-          }}
-        >
+        <div className="create-order">
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              backgroundColor: "rgba(251, 251, 251, 0.95",
-              padding: "10px",
-              margin: "10px",
-              borderRadius: "5px",
+              position: "absolute",
+              backgroundColor: "rgba(136,136,136,0.5",
+              marginTop: "150px",
+              width: "350px",
+              height: "130px",
             }}
           >
-            <div className="left">
-              <p style={{ fontWeight: "bold" }}> Tạm Tính</p>
-            </div>
-            <div className="rigth" style={{ color: "#D83A3A" }}>
-              0.00 VND
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              marginRight: "20px",
-            }}
-          >
-            <button
-              className="btn btn-danger"
+            <div
               style={{
-                backgroundColor: "#D83A3A",
-                color: "white",
-                border: "none",
+                display: "flex",
+                justifyContent: "space-between",
+                backgroundColor: "rgba(251, 251, 251, 0.95",
                 padding: "10px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+                margin: "10px",
+                borderRadius: "5px",
               }}
             >
-              Tạo đơn hàng
-            </button>
+              <div className="left">
+                <p style={{ fontWeight: "bold" }}> Tạm Tính</p>
+              </div>
+              <div className="rigth" style={{ color: "#D83A3A" }}>
+                0.00 VND
+              </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginRight: "20px",
+              }}
+            >
+              <button
+                className="btn btn-danger"
+                style={{
+                  backgroundColor: "#D83A3A",
+                  color: "white",
+                  border: "none",
+                  padding: "10px",
+                  borderRadius: "15px",
+                  boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+                }}
+              >
+                Tạo đơn hàng
+              </button>
+            </div>
           </div>
         </div>
       </div>
