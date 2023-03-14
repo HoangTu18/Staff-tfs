@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCategoryRequest } from "./categorySlice";
 import { formatToVND } from "../../utils/numberUtil";
-
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 const MenuPage = () => {
   const dispatch = useDispatch();
   const listCategory = useSelector(
@@ -63,7 +63,7 @@ const MenuPage = () => {
         })}
       </select>
 
-      <Box sx={{ width: "100%"}}>
+      <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {listFood.map((item, index) => {
             return (
@@ -76,17 +76,20 @@ const MenuPage = () => {
                     >
                       {item.foodName}
                     </Box>
-                    <Stack direction={"row"} sx={{ alignItems: "flex-end" }}>
-                      Giá:{" "}
+                    <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                      Giá:
                       <Box
                         sx={{
-                          marginLeft: "10px",
+                          marginLeft: "4px",
                           fontSize: 16,
                           color: "#d83a3a",
                         }}
                       >
-                        {formatToVND(item.price)} đ
+                        {formatToVND(item.price)}đ
                       </Box>
+                      <AddShoppingCartIcon
+                        style={{ marginLeft: "35px", color: "#d83a3a" }}
+                      />
                     </Stack>
                   </Stack>
                 </Box>
@@ -105,6 +108,7 @@ const styles = {
     borderRadius: "15px",
     boxShadow: 1,
     height: "220px",
+    position: "relative",
   },
   image: {
     borderTopLeftRadius: "15px",
