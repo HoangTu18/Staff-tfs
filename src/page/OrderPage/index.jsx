@@ -29,6 +29,24 @@ const OrderPage = () => {
     }
     return "";
   };
+
+  const explanStatus = (status) => {
+    switch (status) {
+      case "pending":
+        return "Chờ nhận đơn";
+      case "accept":
+        return "Chờ xác nhận";
+      case "delivery":
+        return "Đang giao hàng";
+      case "done":
+        return "Đã nhận hàng";
+      case "deny":
+        return "Huỷ đơn";
+      default:
+        break;
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -60,7 +78,7 @@ const OrderPage = () => {
           {listOrder.length === 0 ? (
             <h2>Hiện không có đơn hàng</h2>
           ) : (
-            listOrder.map((item,index) => (
+            listOrder.map((item, index) => (
               <div
                 key={index}
                 className="order-item"
@@ -81,7 +99,7 @@ const OrderPage = () => {
                   <h3 className="price">{item.totalPrice}</h3>
                   <div className="confirmnative">
                     <FontAwesomeIcon icon={faCircleExclamation} />
-                    <span>{item.status}</span>
+                    <span>{explanStatus(item.status)}</span>
                   </div>
                 </div>
               </div>

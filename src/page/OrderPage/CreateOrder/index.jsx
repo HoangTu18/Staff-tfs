@@ -1,14 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import "./index.css";
+import { dateCurrent } from "../../../utils/DateUtil";
+import { CART } from "../../../utils/constant";
 
 const CreateOrder = () => {
   const navigate = useNavigate();
+
+  const cart = useRef(localStorage.setItem(CART, JSON.stringify([]))).current;
+
   return (
     <Box
       sx={{
@@ -30,7 +35,7 @@ const CreateOrder = () => {
           </div>
         </div>
         <div className="order-calender">
-          <p className="date">Ngày tạo đơn: 19-02-2023</p>
+          <p className="date">Ngày tạo đơn: {dateCurrent()}</p>
         </div>
         <div className="order-item">
           <div className="left">
@@ -62,29 +67,17 @@ const CreateOrder = () => {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: "30px",
+            marginTop: "20px",
           }}
         >
           <div className="left">
             <h3 className="orderID">Danh sách sản phẩm</h3>
           </div>
-          {/* <div className="right">
-            <button
-              className="btn btn-danger"
-              style={{
-                backgroundColor: "#D83A3A",
-                color: "white",
-                border: "none",
-                padding: "10px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
-              }}
-            >
-              Thêm sản phẩm
-            </button>
-          </div> */}
         </div>
-        <div className="order-item">
+        <div
+          style={{ backgroundColor: "blue", width: "100%", height: "190px" }}
+        ></div>
+        {/* <div className="order-item">
           <div className="left" style={{ display: "flex" }}>
             <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
             <div style={{ marginLeft: "7px" }}>
@@ -108,65 +101,15 @@ const CreateOrder = () => {
               <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
             </div>
           </div>
-        </div>
-        <div className="order-item">
-          <div className="left" style={{ display: "flex" }}>
-            <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-            <div style={{ marginLeft: "7px" }}>
-              <h3>Hoàng Tú</h3>
-              <p>Hoàng Tú - 1 cái</p>
-            </div>
-          </div>
-          <div className="right" style={{ alignItems: "end" }}>
-            <p>1.000.000 VND</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              <p
-                style={{
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "15px",
-                }}
-              >
-                1
-              </p>
-              <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-            </div>
-          </div>
-        </div>
-        <div className="order-item">
-          <div className="left" style={{ display: "flex" }}>
-            <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-            <div style={{ marginLeft: "7px" }}>
-              <h3>Hoàng Tú</h3>
-              <p>Hoàng Tú - 1 cái</p>
-            </div>
-          </div>
-          <div className="right" style={{ alignItems: "end" }}>
-            <p>1.000.000 VND</p>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              <p
-                style={{
-                  paddingLeft: "10px",
-                  paddingRight: "10px",
-                  fontSize: "15px",
-                }}
-              >
-                1
-              </p>
-              <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-            </div>
-          </div>
-        </div>
+        </div> */}
       </div>
       <div className="create-order">
         <div
           style={{
             position: "absolute",
-            backgroundColor: "rgba(136,136,136,0.5",
+            backgroundColor: "rgba(136,136,136,0.5)",
             width: "100%",
-            // height: "130px",
+            bottom: 0,
             paddingBottom: "70px",
           }}
         >

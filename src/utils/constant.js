@@ -6,3 +6,4 @@ export const STATUS_CODE = {
 };
 
 export const ORDER = "ORDER";
+export const CART = "CART";

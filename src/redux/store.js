@@ -4,6 +4,7 @@ import rootSaga from "./saga/rootSaga";
 import loadingReducer from "../component/Loading/LoadingSlice";
 import orderReducer from "../page/OrderPage/orderSlice";
 import categoryReducer from "../page/MenuPage/categorySlice";
+import restaurantReducer from "../page/HomePage/restaurantSlice";
 const saga = createSagaMiddleware();
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     loading: loadingReducer,
     orderManage: orderReducer,
     categoryManage: categoryReducer,
+    restaurantManage: restaurantReducer,
   },
   middleware: [saga],
 });
