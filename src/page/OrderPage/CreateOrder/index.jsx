@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -11,7 +11,19 @@ import { CART } from "../../../utils/constant";
 
 const CreateOrder = () => {
   const navigate = useNavigate();
-
+  const [payment, setPayment] = useState("cash");
+  const listPayment = [
+    {
+      value: "cash",
+      name: "Thanh toán tiền mặt",
+      icon: require("../../../assets/icon/cash.png"),
+    },
+    {
+      value: "ZaloPay",
+      name: "Thanh toán bằng ZaloPay",
+      icon: require("../../../assets/icon/zalo.png"),
+    },
+  ];
   const cart = useRef(localStorage.setItem(CART, JSON.stringify([]))).current;
 
   return (
@@ -58,11 +70,29 @@ const CreateOrder = () => {
         <div className="order-calender">
           <p className="date">Phương thức thanh toán</p>
         </div>
-        <div className="order-item">
-          <span style={{ color: "#D83A3A", fontWeight: "bold" }}>
-            Chọn phương thức thanh toán
-          </span>
-        </div>
+        {listPayment.map((item, index) => {
+          return (
+            <div
+              className="order-item"
+              onClick={() => {
+                setPayment(item.value)
+                console.log(payment)
+              }}
+              key={index}
+              style={payment === item.value ?{borderColor:"red", borderWidth: 1.5}:null}
+            >
+              <img
+                src={item.icon}
+                alt="text"
+                style={{ height: 35, width: 35, marginRight: 16 }}
+              />
+              <span style={ payment === item.value ?{ fontWeight: "900", fontSize:14 } : { fontWeight: "500" }}>
+                {item.name}
+              </span>
+            </div>
+          );
+        })}
+
         <div
           style={{
             display: "flex",
@@ -75,7 +105,7 @@ const CreateOrder = () => {
           </div>
         </div>
         <div
-          style={{ backgroundColor: "blue", width: "100%", height: "190px" }}
+          style={{ backgroundColor: "white", width: "100%", height: "190px" }}
         ></div>
         {/* <div className="order-item">
           <div className="left" style={{ display: "flex" }}>
@@ -106,7 +136,7 @@ const CreateOrder = () => {
       <div className="create-order">
         <div
           style={{
-            position: "absolute",
+            // position: "absolute",
             backgroundColor: "rgba(136,136,136,0.5)",
             width: "100%",
             bottom: 0,

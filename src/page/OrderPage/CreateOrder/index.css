@@ -31,10 +31,10 @@
   width: calc(100% - 30px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 6px;
-  border: solid 1px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+  justify-content: flex-start;
+  border-radius: 15px;
+  border: solid 0.5px;
+  box-shadow: rgb(0 0 0 / 30%) 0px 2px 2px;
 }
 .order-page .order-item .space-hr {
   position: "absolute";
@@ -47,7 +47,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 15px;
-  border-color: black;
+  border-color: redbredlack;
 }
 .order-page .order-item .icon {
 }
