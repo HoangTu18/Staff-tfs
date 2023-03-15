@@ -147,11 +147,10 @@ const CreateOrder = () => {
         <div
           style={{
             position: "absolute",
-
+            backgroundColor: "rgba(136,136,136,0.5)",
             width: "100%",
             bottom: 0,
-            paddingBottom: "30px",
-            // paddingBottom: "70px",
+            paddingBottom: "70px",
           }}
         >
           <div

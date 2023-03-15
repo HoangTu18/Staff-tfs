@@ -76,7 +76,14 @@ const MenuPage = () => {
                     >
                       {item.foodName}
                     </Box>
-                    <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                    <Stack
+                      direction={"row"}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
                       Giá:
                       <Box
                         sx={{
@@ -87,9 +94,25 @@ const MenuPage = () => {
                       >
                         {formatToVND(item.price)}đ
                       </Box>
-                      <AddShoppingCartIcon
-                        style={{ marginLeft: "35px", color: "#d83a3a" }}
-                      />
+                      <div
+                        style={{
+                          padding: "10px",
+                          backgroundColor: "#d83a3a",
+                          width: "30px",
+                          height: "30px",
+                          position: "relative",
+                          borderRadius: "15px",
+                        }}
+                      >
+                        <AddShoppingCartIcon
+                          style={{
+                            position: "absolute",
+                            color: "#fff",
+                            top: "5px",
+                            right: "2px",
+                          }}
+                        />
+                      </div>
                     </Stack>
                   </Stack>
                 </Box>

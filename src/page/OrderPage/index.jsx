@@ -85,6 +85,7 @@ const OrderPage = () => {
                 onClick={() => {
                   goToOrderDetailPage(item);
                 }}
+                style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div className="left">
                   <h3 className="orderID">#{item.id}</h3>

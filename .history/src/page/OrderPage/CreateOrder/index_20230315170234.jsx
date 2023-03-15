@@ -151,7 +151,6 @@ const CreateOrder = () => {
             width: "100%",
             bottom: 0,
             paddingBottom: "30px",
-            // paddingBottom: "70px",
           }}
         >
           <div
