@@ -31,7 +31,6 @@ const CreateOrder = () => {
       sx={{
         width: "100%",
         paddingBottom: "50px",
-        position: "relative",
       }}
     >
       <div className="order-page">
@@ -119,119 +118,13 @@ const CreateOrder = () => {
           style={{
             backgroundColor: "white",
             width: "100%",
-            // height: "190px",
+            height: "190px",
           }}
         >
           <div
             className="order-item"
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
             <div className="left" style={{ display: "flex" }}>
               <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
               <div style={{ marginLeft: "7px" }}>
@@ -307,11 +200,12 @@ const CreateOrder = () => {
             </div>
           </div>
         </div>
-        <div className="create-order">
+        <div
+          className="create-order"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
               backgroundColor: "rgba(251, 251, 251, 0.95",
               padding: "10px",
               margin: "10px",
@@ -336,7 +230,7 @@ const CreateOrder = () => {
               className="btn btn-danger"
               style={{
                 backgroundColor: "#D83A3A",
-                color: "white",
+                color: "black",
                 border: "none",
                 padding: "10px",
                 borderRadius: "15px",

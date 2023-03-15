@@ -307,7 +307,12 @@ const CreateOrder = () => {
             </div>
           </div>
         </div>
-        <div className="create-order">
+        <div
+          className="create-order"
+          style={{
+            backgroundColor: "gray",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -336,7 +341,7 @@ const CreateOrder = () => {
               className="btn btn-danger"
               style={{
                 backgroundColor: "#D83A3A",
-                color: "white",
+                color: "black",
                 border: "none",
                 padding: "10px",
                 borderRadius: "15px",
