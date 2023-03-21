@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getCategoryRequest } from "./categorySlice";
 import { formatToVND } from "../../utils/numberUtil";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { addToCart } from "./cartSlice";
 const MenuPage = () => {
   const dispatch = useDispatch();
   const listCategory = useSelector(
@@ -34,6 +35,11 @@ const MenuPage = () => {
       handleOnChangeCate(1);
     }
   }, []);
+
+  const handleAddtoCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
   return (
     <Box
       sx={{
@@ -56,7 +62,7 @@ const MenuPage = () => {
       >
         {listCategory.map((item, index) => {
           return (
-            <option key={index} value={item.id}>
+            <option key={item.id} value={item.id}>
               {item.categoryName}
             </option>
           );
@@ -67,7 +73,7 @@ const MenuPage = () => {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {listFood.map((item, index) => {
             return (
-              <Grid item xs={6} key={index}>
+              <Grid item xs={6} key={`${item.id}`}>
                 <Box sx={styles.contentContainer}>
                   <img style={styles.image} src={item.imgUrl} alt="" />
                   <Stack sx={styles.contentInfor}>
@@ -111,6 +117,7 @@ const MenuPage = () => {
                             top: "5px",
                             right: "2px",
                           }}
+                          onClick={() => handleAddtoCart(item)}
                         />
                       </div>
                     </Stack>
