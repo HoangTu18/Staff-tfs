@@ -1,16 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import Box from "@mui/material/Box";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import "./index.css";
 import { dateCurrent } from "../../../utils/DateUtil";
-import { CART } from "../../../utils/constant";
-
+import { useDispatch, useSelector } from "react-redux";
+import { formatToVND } from "../../../utils/numberUtil";
+import { addToCart, decreaseCart, getTotals } from "../../MenuPage/cartSlice";
+import { getRestaurantRequest } from "../../HomePage/restaurantSlice";
+import moment from "moment";
 const CreateOrder = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [phone, setPhone] = useState("");
+
+  const handlePhone = (event) => {
+    setPhone(event.target.value);
+  };
+  const cart = useSelector((state) => state.cart);
+  const restaurant = useSelector((state) => state.restaurantManage.restaurant);
+  useEffect(() => {
+    dispatch(getTotals());
+    dispatch(getRestaurantRequest(7));
+  }, [cart]);
   const [payment, setPayment] = useState("cash");
   const listPayment = [
     {
@@ -24,7 +39,20 @@ const CreateOrder = () => {
       icon: require("../../../assets/icon/zalo.png"),
     },
   ];
-  const cart = useRef(localStorage.setItem(CART, JSON.stringify([]))).current;
+  const handleIncrease = (item) => {
+    dispatch(addToCart(item));
+  };
+  const handleDecrease = (item) => {
+    dispatch(decreaseCart(item));
+  };
+
+  const handleCreate = () => {
+    //restaurant.restaurantLocation
+    //cart
+    //payment
+    console.log(moment().format("yyyy-MM-DDTHH:mm:ss"));
+    console.log(phone);
+  };
 
   return (
     <Box
@@ -53,12 +81,14 @@ const CreateOrder = () => {
         <div className="order-item">
           <div className="left">
             <h3 className="orderID">Tổng tiền</h3>
-            <h3 className="order-customer">0.00 VND</h3>
+            <h3 className="order-customer">
+              {formatToVND(cart.cartTotalAmount)} VNĐ
+            </h3>
           </div>
           <hr className="space-hr" />
           <div className="right">
             <h3 className="price">Số sản phẩm</h3>
-            <h3 className="order-customer">0.00 VND</h3>
+            <h3 className="order-customer">{cart.cartItems.length}</h3>
           </div>
         </div>
         <div className="order-calender">
@@ -66,7 +96,14 @@ const CreateOrder = () => {
         </div>
         <div className="order-item">
           <PhoneAndroidIcon className="icon" />
-          <input className="phonenumber-customer" placeholder="Số điện thoại" />
+          <input
+            className="phonenumber-customer"
+            placeholder="Số điện thoại"
+            type="number"
+            id="phone"
+            name="phone"
+            onChange={handlePhone}
+          />
         </div>
         <div className="order-calender">
           <p className="date">Phương thức thanh toán</p>
@@ -77,7 +114,6 @@ const CreateOrder = () => {
               className="order-item"
               onClick={() => {
                 setPayment(item.value);
-                console.log(payment);
               }}
               key={index}
               style={
@@ -115,198 +151,50 @@ const CreateOrder = () => {
             <h3 className="orderID">Danh sách sản phẩm</h3>
           </div>
         </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            width: "100%",
-            // height: "190px",
-          }}
-        >
-          <div
-            className="order-item"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
+        {cart.cartItems.map((item, index) => {
+          return (
+            <div
+              style={{
+                backgroundColor: "white",
+                width: "100%",
+              }}
+            >
+              <div
+                className="order-item"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <div className="left" style={{ display: "flex" }}>
+                  <img src={item.imgUrl} alt="" style={{ width: "50px" }} />
+                  <div style={{ marginLeft: "7px" }}>
+                    <h3>{item.foodName}</h3>
+                    <p>{formatToVND(item.price)}/ 1 món</p>
+                  </div>
+                </div>
+                <div className="right" style={{ alignItems: "end" }}>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <RemoveIcon
+                      style={{ fontSize: "14px", marginTop: "3px" }}
+                      onClick={() => handleDecrease(item)}
+                    />
+                    <p
+                      style={{
+                        paddingLeft: "10px",
+                        paddingRight: "10px",
+                        fontSize: "15px",
+                      }}
+                    >
+                      {item.quantity}
+                    </p>
+                    <AddIcon
+                      style={{ fontSize: "14px", marginTop: "3px" }}
+                      onClick={() => handleIncrease(item)}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div
-            className="order-item"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-          <div className="order-item">
-            <div className="left" style={{ display: "flex" }}>
-              <img src="/images/avt.jpg" alt="" style={{ width: "50px" }} />
-              <div style={{ marginLeft: "7px" }}>
-                <h3>Hoàng Tú</h3>
-                <p>Hoàng Tú - 1 cái</p>
-              </div>
-            </div>
-            <div className="right" style={{ alignItems: "end" }}>
-              <p>1.000.000 VND</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <RemoveIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-                <p
-                  style={{
-                    paddingLeft: "10px",
-                    paddingRight: "10px",
-                    fontSize: "15px",
-                  }}
-                >
-                  1
-                </p>
-                <AddIcon style={{ fontSize: "14px", marginTop: "3px" }} />
-              </div>
-            </div>
-          </div>
-        </div>
+          );
+        })}
         <div className="create-order">
           <div
             style={{
@@ -322,7 +210,7 @@ const CreateOrder = () => {
               <p style={{ fontWeight: "bold" }}> Tạm Tính</p>
             </div>
             <div className="rigth" style={{ color: "#D83A3A" }}>
-              0.00 VND
+              {formatToVND(cart.cartTotalAmount)} VNĐ
             </div>
           </div>
           <div
@@ -342,6 +230,7 @@ const CreateOrder = () => {
                 borderRadius: "15px",
                 boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
               }}
+              onClick={() => handleCreate()}
             >
               Tạo đơn hàng
             </button>

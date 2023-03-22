@@ -16,6 +16,8 @@ import Success from "./page/ProfilePage/component/ChangePassword/success/Success
 import OrderDetail from "./page/OrderDetailPage";
 import CreateOrder from "./page/OrderPage/CreateOrder";
 import Loading from "./component/Loading/Loading";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./page/LoginPage";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
