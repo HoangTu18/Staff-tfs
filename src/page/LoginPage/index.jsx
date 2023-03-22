@@ -30,12 +30,16 @@ const LoginPage = () => {
         navigate("/home");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message, {
+        position: toast.POSITION.TOP_LEFT,
+      });
     }
   };
 
   return (
     <div className="login-container">
+      <ToastContainer />
       <div className="logo-container">
         <img src="../../assets/icon/zalo.png" alt="Logo" className="logo" />
       </div>
