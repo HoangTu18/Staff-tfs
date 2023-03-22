@@ -16,15 +16,16 @@ import Success from "./page/ProfilePage/component/ChangePassword/success/Success
 import OrderDetail from "./page/OrderDetailPage";
 import CreateOrder from "./page/OrderPage/CreateOrder";
 import Loading from "./component/Loading/Loading";
+import LoginPage from "./page/LoginPage";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
   return (
     <div>
       <Router>
-      <Loading />
+        <Loading />
         <Routes>
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<LoginPage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="" element={<HomePage />} />
           <Route path="order">

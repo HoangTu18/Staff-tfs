@@ -1,12 +1,18 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { formatToVND } from "../../utils/numberUtil";
 import { getOrderRequest } from "../OrderPage/orderSlice";
 import { getRestaurantRequest } from "../HomePage/restaurantSlice";
 import "./index.css";
 const HomePage = () => {
+  const [staffData1, setStaffData1] = useState(null);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("account"));
+    setStaffData1(user);
+  }, []);
+
   const staffData = {
     staffId: 8,
     staffFullName: "Đặng Tuấn Anh",
@@ -34,8 +40,6 @@ const HomePage = () => {
     dispatch(getOrderRequest(staffData.staffId));
     dispatch(getRestaurantRequest(staffData.theRestaurant.restaurantId));
   }, [dispatch]);
-
-  console.log(restaurant);
 
   const totalRevenue = () => {
     let total = 0;
