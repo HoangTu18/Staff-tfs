@@ -1,44 +1,39 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { formatToVND } from "../../utils/numberUtil";
 import { getOrderRequest } from "../OrderPage/orderSlice";
 import { getRestaurantRequest } from "../HomePage/restaurantSlice";
+import { ACCOUNT } from "../../utils/constant";
 import "./index.css";
 const HomePage = () => {
-  const [staffData1, setStaffData1] = useState(null);
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("account"));
-    setStaffData1(user);
-  }, []);
-
-  const staffData = {
-    staffId: 8,
-    staffFullName: "Đặng Tuấn Anh",
-    staffEmail: "anhdt@gmail.com",
-    staffAvatarUrl: "url-test v1",
-    theAccountForStaff: {
-      accountId: "staff_01",
-      phoneNumber: "0835678111",
-      password: "test123demo",
-      roleId: 4,
-      status: true,
-    },
-    theRestaurant: {
-      restaurantId: 7,
-      restaurantName: "TFS Nguyễn Văn Lượng",
-    },
-    staffActivityStatus: "available",
-    staffStatus: true,
-  };
+  const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
+  // const staffData = {
+  //   staffId: 8,
+  //   staffFullName: "Đặng Tuấn Anh",
+  //   staffEmail: "anhdt@gmail.com",
+  //   staffAvatarUrl: "url-test v1",
+  //   theAccountForStaff: {
+  //     accountId: "staff_01",
+  //     phoneNumber: "0835678111",
+  //     password: "test123demo",
+  //     roleId: 4,
+  //     status: true,
+  //   },
+  //   theRestaurant: {
+  //     restaurantId: 7,
+  //     restaurantName: "TFS Nguyễn Văn Lượng",
+  //   },
+  //   staffActivityStatus: "available",
+  //   staffStatus: true,
+  // };
   const dispatch = useDispatch();
   const listOrder = useSelector((state) => state.orderManage.listOrder);
   const restaurant = useSelector((state) => state.restaurantManage.restaurant);
 
   useEffect(() => {
-    dispatch(getOrderRequest(staffData.staffId));
-    dispatch(getRestaurantRequest(staffData.theRestaurant.restaurantId));
+    dispatch(getOrderRequest(staffData1.staffId));
+    dispatch(getRestaurantRequest(staffData1.theRestaurant.restaurantId));
   }, [dispatch]);
 
   const totalRevenue = () => {
@@ -52,7 +47,7 @@ const HomePage = () => {
   return (
     <Box sx={styles.container}>
       <Box sx={styles.inforBox}>
-        <h2>Xin chào, {staffData.staffFullName} </h2>
+        <h2>Xin chào, {staffData1.staffFullName} </h2>
       </Box>
       <Box sx={styles.inforBox}>
         <Box sx={styles.contentBox}>

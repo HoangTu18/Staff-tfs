@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ACCOUNT } from "../../utils/constant";
 // toast.configure();
-
+import logo from "../../assets/icon/logo.jpg";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +41,7 @@ const LoginPage = () => {
     <div className="login-container">
       <ToastContainer />
       <div className="logo-container">
-        <img src="../../assets/icon/zalo.png" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
       </div>
       <form className="form" onSubmit={handleLogin}>
         <label htmlFor="username" className="label">

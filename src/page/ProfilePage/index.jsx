@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { ACCOUNT } from "../../utils/constant";
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const staff = JSON.parse(localStorage.getItem(ACCOUNT));
 
   const handleLogout = () => {
     localStorage.removeItem(ACCOUNT);
@@ -45,7 +46,7 @@ const ProfilePage = () => {
           <Avatar
             style={styles.imageStyle}
             alt="Travis Howard"
-            src="/images/avt.jpg"
+            src={staff.staffAvatarUrl}
           />
         </Badge>
       </Stack>

@@ -6,8 +6,11 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ACCOUNT } from "../../../../utils/constant";
 const Profile = () => {
   const navigate = useNavigate();
+  const staff = JSON.parse(localStorage.getItem(ACCOUNT));
+  console.log(staff);
   return (
     <Box
       sx={{
@@ -27,7 +30,7 @@ const Profile = () => {
           </div>
         </div>
         <Stack style={styles.avatarContainer} direction="row" spacing={2}>
-          Phạm Hoàng Tú
+          {staff?.staffFullName}
         </Stack>
         <Stack
           flexDirection="row"
@@ -38,7 +41,9 @@ const Profile = () => {
         >
           <Stack flexDirection="row">
             <PhoneAndroidIcon style={styles.icons} />
-            <Box sx={{ margin: "auto", marginLeft: "10px" }}>0799966079</Box>
+            <Box sx={{ margin: "auto", marginLeft: "10px" }}>
+              {staff?.theAccountForStaff?.phoneNumber}
+            </Box>
           </Stack>
           <EditIcon />
         </Stack>
@@ -52,12 +57,12 @@ const Profile = () => {
           <Stack flexDirection="row">
             <MailIcon style={styles.icons} />
             <Box sx={{ margin: "auto", marginLeft: "10px" }}>
-              phoangtu2000@gmail.com
+              {staff?.staffEmail}
             </Box>
           </Stack>
           <EditIcon />
         </Stack>
-        <Stack
+        {/* <Stack
           flexDirection="row"
           style={styles.optionStyle}
           onClick={() => {
@@ -69,7 +74,7 @@ const Profile = () => {
             <Box sx={{ margin: "auto", marginLeft: "10px" }}>01/08/2000</Box>
           </Stack>
           <EditIcon />
-        </Stack>
+        </Stack> */}
       </div>
     </Box>
   );

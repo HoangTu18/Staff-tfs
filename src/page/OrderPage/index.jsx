@@ -30,6 +30,11 @@ const OrderPage = () => {
     }
     return "";
   };
+  useEffect(() => {
+    if (filterlistOrder.length === 0) {
+      handleOnChange(1);
+    }
+  }, []);
 
   const explanStatus = (status) => {
     switch (status) {
@@ -49,8 +54,9 @@ const OrderPage = () => {
   };
 
   const handleOnChange = (e) => {
+    let eId = e !== 1 ? +e.target.value : 1;
     setFilterListOrder([]);
-    switch (+e.target.value) {
+    switch (eId) {
       case 1:
         listOrder.forEach((item) => {
           setFilterListOrder((prev) => [...prev, item]);

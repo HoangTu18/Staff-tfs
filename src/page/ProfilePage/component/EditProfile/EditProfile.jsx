@@ -2,11 +2,13 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ACCOUNT } from "../../../../utils/constant";
 import "./EditProfile.css";
 const EditProfile = () => {
   const navigate = useNavigate();
+  const staff = JSON.parse(localStorage.getItem(ACCOUNT));
   return (
     <Box
       sx={{
@@ -27,36 +29,42 @@ const EditProfile = () => {
         </div>
 
         <Stack style={styles.avatarContainer} direction="row" spacing={2}>
-          <span style={{ fontWeight: "bold" }}> Phạm Hoàng Tú</span>
+          <span style={{ fontWeight: "bold" }}>{staff.staffFullName}</span>
         </Stack>
 
         <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
           <span style={{ fontWeight: "bold" }}>Họ và tên</span>
         </Box>
         <Stack flexDirection="row" style={styles.optionStyle}>
-          <input value="Phạm Hoàng Tú" style={styles.input} />
+          <input
+            value={staff?.staffFullName}
+            style={styles.input}
+          />
         </Stack>
 
         <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
           <span style={{ fontWeight: "bold" }}>Email</span>
         </Box>
         <Stack flexDirection="row" style={styles.optionStyle}>
-          <input value="phoangtu2000@gmail.com" style={styles.input} />
+          <input value={staff?.staffEmail} style={styles.input} />
         </Stack>
 
         <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
           <span style={{ fontWeight: "bold" }}>Số điện thoại</span>
         </Box>
         <Stack flexDirection="row" style={styles.optionStyle}>
-          <input value="0799966079" style={styles.input} />
+          <input
+            value={staff?.theAccountForStaff?.phoneNumber}
+            style={styles.input}
+          />
         </Stack>
 
-        <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
+        {/* <Box style={{ marginBottom: "10px", fontSize: "18px" }}>
           <span style={{ fontWeight: "bold" }}>Ngày Sinh</span>
         </Box>
         <Stack flexDirection="row" style={styles.optionStyle}>
           <input value="01/08/2000" style={styles.input} />
-        </Stack>
+        </Stack> */}
         <Box sx={{ margin: "auto", marginLeft: "20%" }}>
           <Button
             style={{

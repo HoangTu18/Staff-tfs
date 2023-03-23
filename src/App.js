@@ -19,9 +19,15 @@ import Loading from "./component/Loading/Loading";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./page/LoginPage";
+import { ACCOUNT } from "./utils/constant";
+import { useEffect, useState } from "react";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
+  // const [staff, setStaff] = useState({});
+  // useEffect(() => {
+  //   setStaff(JSON.parse(localStorage.getItem(ACCOUNT)));
+  // }, [JSON.parse(localStorage.getItem(ACCOUNT))]);
   return (
     <div>
       <Router>
@@ -45,6 +51,7 @@ function App() {
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="success" element={<Success />} />
         </Routes>
+        {/* {staff !== null &&} */}
         <AppNavigation />
       </Router>
     </div>
