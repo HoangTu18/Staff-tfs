@@ -18,7 +18,6 @@ function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   let order = JSON.parse(localStorage.getItem(ORDER));
-  console.log("re-Render");
 
   const backToOrderPage = () => {
     navigate("/order");

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { ACCOUNT } from "../../utils/constant";
 // toast.configure();
 
 const LoginPage = () => {
@@ -26,7 +26,7 @@ const LoginPage = () => {
         data
       );
       if (response.status === 200) {
-        localStorage.setItem("account", JSON.stringify(response.data));
+        localStorage.setItem(ACCOUNT, JSON.stringify(response.data));
         navigate("/home");
       }
     } catch (error) {

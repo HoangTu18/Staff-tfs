@@ -4,9 +4,10 @@ import { faPlus, faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getListCustomerRequest, getOrderRequest } from "./orderSlice";
 import { ORDER } from "../../utils/constant";
+import { formatToVND } from "../../utils/numberUtil";
 const OrderPage = () => {
   const navigate = useNavigate();
   const goToOrderDetailPage = (data) => {
@@ -16,7 +17,7 @@ const OrderPage = () => {
   const dispatch = useDispatch();
   const listOrder = useSelector((state) => state.orderManage.listOrder);
   const listCustomer = useSelector((state) => state.orderManage.listCustomer);
-
+  const [filterlistOrder, setFilterListOrder] = useState([]);
   useEffect(() => {
     dispatch(getOrderRequest(8));
     dispatch(getListCustomerRequest());
@@ -47,6 +48,57 @@ const OrderPage = () => {
     }
   };
 
+  const handleOnChange = (e) => {
+    setFilterListOrder([]);
+    switch (+e.target.value) {
+      case 1:
+        listOrder.forEach((item) => {
+          setFilterListOrder((prev) => [...prev, item]);
+        });
+        break;
+      case 2:
+        listOrder.forEach((item) => {
+          if (item.status === "pending") {
+            setFilterListOrder((prev) => [...prev, item]);
+          }
+        });
+        break;
+      case 3:
+        listOrder.forEach((item) => {
+          if (item.status === "accept") {
+            setFilterListOrder((prev) => [...prev, item]);
+          }
+        });
+        break;
+      case 4:
+        listOrder.forEach((item) => {
+          if (item.status === "delivery") {
+            setFilterListOrder((prev) => [...prev, item]);
+          }
+        });
+        break;
+      case 5:
+        listOrder.forEach((item) => {
+          if (item.status === "done") {
+            setFilterListOrder((prev) => [...prev, item]);
+          }
+        });
+        break;
+      case 6:
+        listOrder.forEach((item) => {
+          if (item.status === "deny") {
+            setFilterListOrder((prev) => [...prev, item]);
+          }
+        });
+        break;
+      default:
+        listOrder.forEach((item) => {
+          setFilterListOrder((prev) => [...prev, item]);
+        });
+        break;
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -57,7 +109,6 @@ const OrderPage = () => {
         <div className="order-title">
           <div className="order-title-detail" style={{ width: "100%" }}>
             <div style={{ display: "flex", width: "100%" }}>
-              {/* <img src="/images/back-icon.svg" alt="" /> */}
               <h2> Đơn đặt hàng</h2>
             </div>
             <div style={{ fontSize: "21px" }}>
@@ -70,15 +121,20 @@ const OrderPage = () => {
             </div>
           </div>
         </div>
-        {/* <div className="order-calender">
-          <input type={"date"} className="date" />
-        </div> */}
-        <h2 className="order-sum">Tổng đơn hàng: {listOrder.length}</h2>
+        <h2 className="order-sum">Tổng đơn hàng: {filterlistOrder.length}</h2>
+        <select className="filter" onChange={handleOnChange}>
+          <option value="1">Tất cả</option>
+          <option value="2">Chờ nhận đơn</option>
+          <option value="3">Chờ xác nhận</option>
+          <option value="4">Đang giao hàng</option>
+          <option value="5">Đã nhận hàng</option>
+          <option value="6">Huỷ đơn</option>
+        </select>
         <div className="order-list">
-          {listOrder.length === 0 ? (
+          {filterlistOrder.length === 0 ? (
             <h2>Hiện không có đơn hàng</h2>
           ) : (
-            listOrder.map((item, index) => (
+            filterlistOrder.map((item, index) => (
               <div
                 key={index}
                 className="order-item"
@@ -97,7 +153,7 @@ const OrderPage = () => {
                   </div>
                 </div>
                 <div className="right">
-                  <h3 className="price">{item.totalPrice}</h3>
+                  <h3 className="price">{formatToVND(item.totalPrice)}đ</h3>
                   <div className="confirmnative">
                     <FontAwesomeIcon icon={faCircleExclamation} />
                     <span>{explanStatus(item.status)}</span>

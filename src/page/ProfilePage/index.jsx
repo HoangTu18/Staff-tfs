@@ -12,8 +12,14 @@ import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsAct
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import { useNavigate } from "react-router-dom";
+import { ACCOUNT } from "../../utils/constant";
 const ProfilePage = () => {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem(ACCOUNT);
+    navigate("/login");
+  };
   return (
     <Box
       sx={{
@@ -83,7 +89,11 @@ const ProfilePage = () => {
         </Stack>
         <ChevronRightRoundedIcon />
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      <Stack
+        flexDirection="row"
+        style={styles.optionStyle}
+        onClick={() => handleLogout()}
+      >
         <Stack flexDirection="row">
           <ExitToAppRoundedIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Đăng xuất</Box>
