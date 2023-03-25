@@ -36,7 +36,7 @@ const OrderPage = () => {
     }
   }, []);
 
-  const explanStatus = (status) => {
+  const explainStatus = (status) => {
     switch (status) {
       case "pending":
         return "Chờ nhận đơn";
@@ -140,7 +140,7 @@ const OrderPage = () => {
           {filterlistOrder.length === 0 ? (
             <h2>Hiện không có đơn hàng</h2>
           ) : (
-            filterlistOrder.map((item, index) => (
+            filterlistOrder.reverse().map((item, index) => (
               <div
                 key={index}
                 className="order-item"
@@ -162,7 +162,7 @@ const OrderPage = () => {
                   <h3 className="price">{formatToVND(item.totalPrice)}đ</h3>
                   <div className="confirmnative">
                     <FontAwesomeIcon icon={faCircleExclamation} />
-                    <span>{explanStatus(item.status)}</span>
+                    <span>{explainStatus(item.status)}</span>
                   </div>
                 </div>
               </div>
