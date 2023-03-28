@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from "../../component/Loading/LoadingSlice";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { orderService } from "../../services/orderService";
-import { ORDER, STATUS_CODE } from "../../utils/constant";
+import { ACCOUNT, ORDER, STATUS_CODE } from "../../utils/constant";
 import {
   getOrderRequest,
   getOrderSuccess,
@@ -14,6 +14,7 @@ import {
   getListCustomerFailure,
   updateOrderRequest,
   updateOrderFail,
+  insertOrderRequest,
 } from "../../page/OrderPage/orderSlice";
 function* getOrderByStaffId(action) {
   try {
@@ -65,7 +66,8 @@ function* updateOrderStatus(action) {
       return orderService.updateOrderStatus(action.payload);
     });
     if (order.status === STATUS_CODE.SUCCESS) {
-      yield put(getOrderRequest(8));
+      const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
+      yield put(getOrderRequest(staffData1.staffId));
       yield put(getListCustomerRequest());
       localStorage.setItem(ORDER, JSON.stringify(order.data));
       yield put(hideLoading());
@@ -100,4 +102,27 @@ function* getCustomers() {
 
 export function* followActiongetCustomers() {
   yield takeLatest(getListCustomerRequest, getCustomers);
+}
+
+function* insertOrderStatus(action) {
+  try {
+    yield put(showLoading());
+    let order = yield call(() => {
+      return orderService.insertOrder(action.payload);
+    });
+    if (order.status === STATUS_CODE.SUCCESS) {
+      const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
+      yield put(getOrderRequest(staffData1.staffId));
+      yield put(getListCustomerRequest());
+      localStorage.setItem(ORDER, JSON.stringify(order.data));
+      yield put(hideLoading());
+    }
+  } catch (error) {
+    yield put(getOrderFailure(error));
+    yield put(hideLoading());
+  }
+}
+
+export function* followActionInsertOrderStatus() {
+  yield takeLatest(insertOrderRequest, insertOrderStatus);
 }

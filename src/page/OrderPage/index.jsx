@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getListCustomerRequest, getOrderRequest } from "./orderSlice";
-import { ORDER } from "../../utils/constant";
+import { ACCOUNT, ORDER } from "../../utils/constant";
 import { formatToVND } from "../../utils/numberUtil";
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -14,12 +14,13 @@ const OrderPage = () => {
     localStorage.setItem(ORDER, JSON.stringify(data));
     navigate(`/order/${data.id}`);
   };
+  const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
   const dispatch = useDispatch();
   const listOrder = useSelector((state) => state.orderManage.listOrder);
   const listCustomer = useSelector((state) => state.orderManage.listCustomer);
   const [filterlistOrder, setFilterListOrder] = useState([]);
   useEffect(() => {
-    dispatch(getOrderRequest(8));
+    dispatch(getOrderRequest(staffData1.staffId));
     dispatch(getListCustomerRequest());
   }, [dispatch]);
 

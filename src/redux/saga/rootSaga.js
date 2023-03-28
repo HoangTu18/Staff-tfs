@@ -8,6 +8,7 @@ export default function* rootSaga() {
     orderManageSaga.followActiongetCustomer(),
     orderManageSaga.followActiongetCustomers(),
     orderManageSaga.followActionUpdateOrderStatus(),
+    orderManageSaga.followActionInsertOrderStatus(),
     categoryManageSaga.followActiongetCategory(),
     restaurantManageSaga.followActiongetRestaurantById(),
   ]);
