@@ -11,13 +11,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { formatToVND } from "../../../utils/numberUtil";
 import { addToCart, decreaseCart, getTotals } from "../../MenuPage/cartSlice";
 import { getRestaurantRequest } from "../../HomePage/restaurantSlice";
+import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
-import { ACCOUNT } from "../../../utils/constant";
+import { ACCOUNT, API_URL } from "../../../utils/constant";
 import { insertOrderRequest } from "../orderSlice";
+import axios from "axios";
 const CreateOrder = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [phone, setPhone] = useState("");
+  const [isDone, setIsDone] = useState(true);
   const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
   const handlePhone = (event) => {
     setPhone(event.target.value);
@@ -48,6 +51,50 @@ const CreateOrder = () => {
   const handleDecrease = (item) => {
     dispatch(decreaseCart(item));
   };
+  const handleZaloPayment = (order) => {
+    setIsDone(false);
+    axios
+      .get(API_URL + "/orders")
+      .then((res) => {
+        let maxId = Math.max(...res.data.map((item) => item.id));
+        let zaloPayOrder = {
+          id: maxId + 1,
+          totalPrice: cart.cartTotalAmount,
+          totalQuantity: 2,
+        };
+        axios
+          .post(API_URL + "/orders/zaloPay", zaloPayOrder)
+          .then((response) => {
+            axios
+              .get(API_URL + "/orders/checkPayment/" + response.data.apptransid)
+              .then((zaloRes) => {
+                setIsDone(true);
+                navigate("/zalopayment", {
+                  state: {
+                    order: order,
+                    paymentResponse: response.data,
+                    zaloResponse: zaloRes.data,
+                    zaloPayOrder: zaloPayOrder
+                  },
+                });
+                console.log(response.data);
+              });
+          })
+          .catch((err) => {
+            setIsDone(true);
+            console.log(err);
+          });
+      })
+      .catch((error) => {
+        if (error.response) {
+          setIsDone(true);
+          console.lo(error.response.data);
+        }
+      });
+
+    let url = API_URL + "/orders/checkPayment/";
+    // navigate("/zalopayment", {order: item});
+  };
   const handleCreate = () => {
     const data = [];
     if (cart.cartItems.length > 0) {
@@ -60,7 +107,22 @@ const CreateOrder = () => {
           image: item.imgUrl,
         });
       });
+      const payload = {
+        id: 0,
+        paymentMethod: payment,
+        customerId: 16,
+        restaurantId: restaurant.restaurantId,
+        staffId: staffData1.staffId,
+        itemList: data,
+      };
+      payment === "cash"
+        ? dispatch(insertOrderRequest(payload))
+        : handleZaloPayment(payload);
+      // dispatch(checkoutCart());
+    } else {
+      navigate("/menu");
     }
+<<<<<<< HEAD
     const payload = {
       id: 0,
       paymentMethod: payment,
@@ -71,6 +133,8 @@ const CreateOrder = () => {
     };
     dispatch(insertOrderRequest(payload));
     // dispatch(checkoutCart());
+=======
+>>>>>>> ad34a45a980f6f5ea0a055ed2b63bf126ef58ace
   };
 
   return (
@@ -191,6 +255,7 @@ const CreateOrder = () => {
         {cart.cartItems.map((item, index) => {
           return (
             <div
+              key={index}
               style={{
                 backgroundColor: "white",
                 width: "100%",
@@ -258,20 +323,41 @@ const CreateOrder = () => {
             marginRight: "20px",
           }}
         >
-          <button
-            className="btn btn-danger"
-            style={{
-              backgroundColor: "#D83A3A",
-              color: "white",
-              border: "none",
-              padding: "10px",
-              borderRadius: "15px",
-              boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
-            }}
-            onClick={() => handleCreate()}
-          >
-            Tạo đơn hàng
-          </button>
+          {isDone ? (
+            <button
+              className="btn btn-danger"
+              style={{
+                backgroundColor: "#D83A3A",
+                color: "white",
+                border: "none",
+                padding: "10px",
+                borderRadius: "15px",
+                fontWeight: "700",
+                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+              }}
+              onClick={() => handleCreate()}
+            >
+              Tạo đơn hàng
+            </button>
+          ) : (
+            <button
+              disabled={true}
+              className="btn btn-danger"
+              style={{
+                backgroundColor: "#ff9b9b",
+                color: "white",
+                border: "none",
+                padding: "10px",
+                borderRadius: "15px",
+                fontWeight: "700",
+                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+              }}
+              onClick={() => handleCreate()}
+            >
+              <CircularProgress color="inherit" size={16} /> Đang tạo đơn
+              hàng...
+            </button>
+          )}
         </div>
       </div>
     </Box>
