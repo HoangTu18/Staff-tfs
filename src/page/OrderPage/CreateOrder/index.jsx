@@ -132,19 +132,6 @@ const CreateOrder = () => {
     } else {
       navigate("/menu");
     }
-<<<<<<< HEAD
-    const payload = {
-      id: 0,
-      paymentMethod: payment,
-      customerId: 16,
-      restaurantId: restaurant.restaurantId,
-      staffId: staffData1.staffId,
-      itemList: data,
-    };
-    dispatch(insertOrderRequest(payload));
-    // dispatch(checkoutCart());
-=======
->>>>>>> ad34a45a980f6f5ea0a055ed2b63bf126ef58ace
   };
 
   return (
