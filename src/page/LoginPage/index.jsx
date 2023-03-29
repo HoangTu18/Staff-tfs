@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ACCOUNT } from "../../utils/constant";
+import { ACCOUNT, API_URL } from "../../utils/constant";
 // toast.configure();
 import logo from "../../assets/icon/logo.jpg";
 const LoginPage = () => {
@@ -22,7 +22,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://tfsapiv1-env.eba-aagv3rp5.ap-southeast-1.elasticbeanstalk.com/api/staffs/login/",
+        API_URL + "/staffs/login/",
         data
       );
       if (response.status === 200) {

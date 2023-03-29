@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { Home2, Note, Book, ProfileCircle } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AppNavigation() {
   const [value, setValue] = useState("home");
   const navigate = useNavigate();
+  const location = useLocation();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  useEffect(() => {
+    console.log(location.pathname);
+  }, [location]);
 
   return (
     <BottomNavigation
@@ -17,6 +21,12 @@ export default function AppNavigation() {
         width: "100%",
         position: "fixed",
         bottom: 0,
+        display:
+          location.pathname === "/login" ||
+          location.pathname === "/zalopayment" ||
+          location.pathname === "/createorder"
+            ? "none"
+            : "flex",
       }}
       value={value}
       onChange={handleChange}
