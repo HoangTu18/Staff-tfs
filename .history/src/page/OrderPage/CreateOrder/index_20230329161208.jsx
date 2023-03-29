@@ -62,7 +62,7 @@ const CreateOrder = () => {
       });
     }
     const payload = {
-      id: 0,
+      id: 1302,
       paymentMethod: payment,
       customerId: 16,
       restaurantId: restaurant.restaurantId,
