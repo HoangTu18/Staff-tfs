@@ -25,7 +25,10 @@ export default function AppNavigation() {
           location.pathname === "/login" ||
           location.pathname === "/zalopayment" ||
           location.pathname === "/createorder" ||
+<<<<<<< HEAD
+=======
           location.pathname === "/paymentsuccess" ||
+>>>>>>> ad34a45a980f6f5ea0a055ed2b63bf126ef58ace
           location.pathname === "/"
             ? "none"
             : "flex",
