@@ -11,7 +11,7 @@ import EditProfile from "./page/ProfilePage/component/EditProfile/EditProfile";
 import Setting from "./page/ProfilePage/component/ChangePassword/Setting";
 import ChangePassword from "./page/ProfilePage/component/ChangePassword/ChangePassword";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import ZaloPaymentPage from "./page/ZaloPaymentPage";
 import Success from "./page/ProfilePage/component/ChangePassword/success/Success";
 import OrderDetail from "./page/OrderDetailPage";
 import CreateOrder from "./page/OrderPage/CreateOrder";
@@ -21,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginPage from "./page/LoginPage";
 import { ACCOUNT } from "./utils/constant";
 import { useEffect, useState } from "react";
+import ZalopaySuccess from "./page/ZaloPaymentPage/ZalopaySuccess";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
           <Route path="setting" element={<Setting />} />
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="success" element={<Success />} />
+          <Route path="zalopayment" element={<ZaloPaymentPage />} />
+          <Route path="paymentsuccess" element={<ZalopaySuccess />} />
         </Routes>
         {/* {staff !== null &&} */}
         <AppNavigation />

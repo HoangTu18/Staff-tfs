@@ -9,6 +9,8 @@ import { formatToVND } from "../../utils/numberUtil";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { addToCart } from "./cartSlice";
 import { hover } from "@testing-library/user-event/dist/hover";
+import axios from "axios";
+import { API_URL } from "../../utils/constant";
 const MenuPage = () => {
   const dispatch = useDispatch();
   const listCategory = useSelector(
@@ -16,6 +18,9 @@ const MenuPage = () => {
   );
   const [listFood, setListFood] = useState([]);
   useEffect(() => {
+    axios.get(API_URL + "/category/1").then((response) => {
+      setListFood(response.data.foodList)
+    })
     dispatch(getCategoryRequest());
   }, []);
 

@@ -24,7 +24,9 @@ export default function AppNavigation() {
         display:
           location.pathname === "/login" ||
           location.pathname === "/zalopayment" ||
-          location.pathname === "/createorder"
+          location.pathname === "/createorder" ||
+          location.pathname === "/paymentsuccess" ||
+          location.pathname === "/"
             ? "none"
             : "flex",
       }}
