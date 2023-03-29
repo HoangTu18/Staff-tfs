@@ -9,7 +9,12 @@ import "./index.css";
 import { dateCurrent } from "../../../utils/DateUtil";
 import { useDispatch, useSelector } from "react-redux";
 import { formatToVND } from "../../../utils/numberUtil";
-import { addToCart, decreaseCart, getTotals } from "../../MenuPage/cartSlice";
+import {
+  addToCart,
+  decreaseCart,
+  getTotals,
+  deleteCart,
+} from "../../MenuPage/cartSlice";
 import { getRestaurantRequest } from "../../HomePage/restaurantSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import moment from "moment";
@@ -74,7 +79,7 @@ const CreateOrder = () => {
                     order: order,
                     paymentResponse: response.data,
                     zaloResponse: zaloRes.data,
-                    zaloPayOrder: zaloPayOrder
+                    zaloPayOrder: zaloPayOrder,
                   },
                 });
                 console.log(response.data);
@@ -94,6 +99,11 @@ const CreateOrder = () => {
 
     let url = API_URL + "/orders/checkPayment/";
     // navigate("/zalopayment", {order: item});
+  };
+  const handleDeleteCart = (payload) => {
+    dispatch(insertOrderRequest(payload));
+    dispatch(deleteCart());
+    navigate("/home");
   };
   const handleCreate = () => {
     const data = [];
@@ -116,7 +126,7 @@ const CreateOrder = () => {
         itemList: data,
       };
       payment === "cash"
-        ? dispatch(insertOrderRequest(payload))
+        ? handleDeleteCart(payload)
         : handleZaloPayment(payload);
       // dispatch(checkoutCart());
     } else {

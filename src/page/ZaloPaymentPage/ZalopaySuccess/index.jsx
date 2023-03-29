@@ -3,7 +3,8 @@ import Lottie from "lottie-react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { insertOrderRequest } from "../../OrderPage/orderSlice";
+import { deleteCart } from "../../MenuPage/cartSlice";
+import { insertOrderRequest, } from "../../OrderPage/orderSlice";
 
 import successIcon from "./79952-successful.json";
 const ZalopaySuccess = () => {
@@ -13,7 +14,7 @@ const ZalopaySuccess = () => {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(insertOrderRequest(order))
-  
+    dispatch(deleteCart())
   },[])
   return (
     <Box

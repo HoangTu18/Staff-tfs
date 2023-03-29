@@ -52,7 +52,15 @@ const cartSlice = createSlice({
       );
       state.cartTotalAmount = total;
     },
+    deleteCart(state, action) {
+      return {
+        ...state,
+        cartItems: [],
+        cartTotalAmount: 0,
+      };
+    },
   },
 });
-export const { addToCart, decreaseCart, getTotals } = cartSlice.actions;
+export const { addToCart, decreaseCart, getTotals, deleteCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
