@@ -12,19 +12,22 @@ import { formatToVND } from "../../../utils/numberUtil";
 import { addToCart, decreaseCart, getTotals } from "../../MenuPage/cartSlice";
 import { getRestaurantRequest } from "../../HomePage/restaurantSlice";
 import moment from "moment";
+import { ACCOUNT } from "../../../utils/constant";
+import { insertOrderRequest } from "../orderSlice";
 const CreateOrder = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [phone, setPhone] = useState("");
-
+  const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
   const handlePhone = (event) => {
     setPhone(event.target.value);
   };
   const cart = useSelector((state) => state.cart);
   const restaurant = useSelector((state) => state.restaurantManage.restaurant);
+  const listOrder = useSelector((state) => state.orderManage.listOrder);
   useEffect(() => {
     dispatch(getTotals());
-    dispatch(getRestaurantRequest(7));
+    dispatch(getRestaurantRequest(staffData1.theRestaurant.restaurantId));
   }, [cart]);
   const [payment, setPayment] = useState("cash");
   const listPayment = [
@@ -45,13 +48,29 @@ const CreateOrder = () => {
   const handleDecrease = (item) => {
     dispatch(decreaseCart(item));
   };
-
   const handleCreate = () => {
-    //restaurant.restaurantLocation
-    //cart
-    //payment
-    console.log(moment().format("yyyy-MM-DDTHH:mm:ss"));
-    console.log(phone);
+    const data = [];
+    if (cart.cartItems.length > 0) {
+      cart.cartItems.forEach((item) => {
+        data.push({
+          id: item.id,
+          price: item.price,
+          quantity: item.quantity,
+          subTotal: item.price * item.quantity,
+          image: item.imgUrl,
+        });
+      });
+    }
+    const payload = {
+      id: 1302,
+      paymentMethod: payment,
+      customerId: 16,
+      restaurantId: restaurant.restaurantId,
+      staffId: staffData1.staffId,
+      itemList: data,
+    };
+    dispatch(insertOrderRequest(payload));
+    // dispatch(checkoutCart());
   };
 
   return (

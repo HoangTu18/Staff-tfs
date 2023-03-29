@@ -5,7 +5,7 @@ class OrderService extends BaseService {
     return this.get(`orders/staff/${id}`);
   };
   insertOrder = (model) => {
-    return this.post(`orders`, model);
+    return this.post(`orders/forstaff/`, model);
   };
   updateOrder = (model) => {
     return this.put(`orders`, model);

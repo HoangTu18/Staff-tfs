@@ -3,9 +3,7 @@ import { toast } from "react-toastify";
 import { CART } from "../../utils/constant";
 
 const initialState = {
-  cartItems: localStorage.getItem(CART)
-    ? JSON.parse(localStorage.getItem(CART))
-    : [],
+  cartItems: [],
   cartTotalAmount: 0,
 };
 
@@ -24,7 +22,7 @@ const cartSlice = createSlice({
         state.cartItems.push(tmpProduct);
       }
       toast.success("Đã thêm món ăn vào giỏ", { position: "top-center" });
-      localStorage.setItem(CART, JSON.stringify(state.cartItems));
+      // localStorage.setItem(CART, JSON.stringify(state.cartItems));
     },
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
@@ -38,7 +36,7 @@ const cartSlice = createSlice({
         );
         state.cartItems = nextCartItem;
       }
-      localStorage.setItem(CART, JSON.stringify(state.cartItems));
+      // localStorage.setItem(CART, JSON.stringify(state.cartItems));
     },
     getTotals(state, action) {
       let { total, quantity } = state.cartItems.reduce(
