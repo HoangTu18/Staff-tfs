@@ -8,6 +8,7 @@ import { getCategoryRequest } from "./categorySlice";
 import { formatToVND } from "../../utils/numberUtil";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { addToCart } from "./cartSlice";
+import { hover } from "@testing-library/user-event/dist/hover";
 const MenuPage = () => {
   const dispatch = useDispatch();
   const listCategory = useSelector(
@@ -100,16 +101,7 @@ const MenuPage = () => {
                       >
                         {formatToVND(item.price)}đ
                       </Box>
-                      <div
-                        style={{
-                          padding: "10px",
-                          backgroundColor: "#d83a3a",
-                          width: "30px",
-                          height: "30px",
-                          position: "relative",
-                          borderRadius: "15px",
-                        }}
-                      >
+                      <div style={styles.cartIcon}>
                         <AddShoppingCartIcon
                           style={{
                             position: "absolute",
@@ -152,6 +144,14 @@ const styles = {
     // fontSize: "10px",
     margin: "10px",
     paddingBottom: "10px",
+  },
+  cartIcon: {
+    padding: "10px",
+    backgroundColor: "#d83a3a",
+    width: "30px",
+    height: "30px",
+    position: "relative",
+    borderRadius: "15px",
   },
 };
 export default MenuPage;

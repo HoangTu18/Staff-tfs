@@ -76,7 +76,7 @@ const ProfilePage = () => {
         </Stack>
         <ChevronRightRoundedIcon />
       </Stack>
-      <Stack flexDirection="row" style={styles.optionStyle}>
+      {/* <Stack flexDirection="row" style={styles.optionStyle}>
         <Stack flexDirection="row">
           <NotificationsActiveRoundedIcon style={styles.icons} />
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Thông báo</Box>
@@ -89,7 +89,7 @@ const ProfilePage = () => {
           <Box sx={{ margin: "auto", marginLeft: "10px" }}>Về ứng dụng</Box>
         </Stack>
         <ChevronRightRoundedIcon />
-      </Stack>
+      </Stack> */}
       <Stack
         flexDirection="row"
         style={styles.optionStyle}

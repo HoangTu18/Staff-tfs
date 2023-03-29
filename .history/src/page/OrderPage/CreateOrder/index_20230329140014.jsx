@@ -151,22 +151,7 @@ const CreateOrder = () => {
             <h3 className="orderID">Danh sách sản phẩm</h3>
           </div>
           <div className="right">
-            <button
-              className="btn btn-danger"
-              style={{
-                backgroundColor: "#D83A3A",
-                color: "white",
-                border: "none",
-                padding: "10px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
-              }}
-              onClick={() => {
-                navigate("/menu");
-              }}
-            >
-              Thêm món
-            </button>
+            <button>Thêm món</button>
           </div>
         </div>
         {cart.cartItems.map((item, index) => {
@@ -213,46 +198,46 @@ const CreateOrder = () => {
             </div>
           );
         })}
-      </div>
-      <div className="create-order">
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "rgba(251, 251, 251, 0.95",
-            padding: "10px",
-            margin: "10px",
-            borderRadius: "5px",
-          }}
-        >
-          <div className="left">
-            <p style={{ fontWeight: "bold" }}> Tạm Tính</p>
-          </div>
-          <div className="rigth" style={{ color: "#D83A3A" }}>
-            {formatToVND(cart.cartTotalAmount)} VNĐ
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginRight: "20px",
-          }}
-        >
-          <button
-            className="btn btn-danger"
+        <div className="create-order">
+          <div
             style={{
-              backgroundColor: "#D83A3A",
-              color: "white",
-              border: "none",
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "rgba(251, 251, 251, 0.95",
               padding: "10px",
-              borderRadius: "15px",
-              boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+              margin: "10px",
+              borderRadius: "5px",
             }}
-            onClick={() => handleCreate()}
           >
-            Tạo đơn hàng
-          </button>
+            <div className="left">
+              <p style={{ fontWeight: "bold" }}> Tạm Tính</p>
+            </div>
+            <div className="rigth" style={{ color: "#D83A3A" }}>
+              {formatToVND(cart.cartTotalAmount)} VNĐ
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginRight: "20px",
+            }}
+          >
+            <button
+              className="btn btn-danger"
+              style={{
+                backgroundColor: "#D83A3A",
+                color: "white",
+                border: "none",
+                padding: "10px",
+                borderRadius: "15px",
+                boxShadow: "0px 4px 4px rgba(0,0,0,0.25))",
+              }}
+              onClick={() => handleCreate()}
+            >
+              Tạo đơn hàng
+            </button>
+          </div>
         </div>
       </div>
     </Box>

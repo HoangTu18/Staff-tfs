@@ -214,7 +214,7 @@ const CreateOrder = () => {
           );
         })}
       </div>
-      <div className="create-order">
+      <div className="create-order" style={{ paddingBottom: 0 }}>
         <div
           style={{
             display: "flex",
