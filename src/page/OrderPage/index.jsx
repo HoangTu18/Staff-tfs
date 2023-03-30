@@ -118,14 +118,14 @@ const OrderPage = () => {
             <div style={{ display: "flex", width: "100%" }}>
               <h2> Đơn đặt hàng</h2>
             </div>
-            <div style={{ fontSize: "21px" }}>
+            {/* <div style={{ fontSize: "21px" }}>
               <FontAwesomeIcon
                 icon={faPlus}
                 onClick={() => {
                   navigate("/createorder");
                 }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <h2 className="order-sum">Tổng đơn hàng: {filterlistOrder.length}</h2>

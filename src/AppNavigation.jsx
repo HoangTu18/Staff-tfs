@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { Home2, Note, Book, ProfileCircle } from "iconsax-react";
+import { Home2, Note, Book, ProfileCircle, ShoppingCart } from "iconsax-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AppNavigation() {
@@ -12,7 +12,9 @@ export default function AppNavigation() {
     setValue(newValue);
   };
   useEffect(() => {
-    console.log(location.pathname);
+    if (location.pathname === "/menu") {
+      setValue("menu");
+    }
   }, [location]);
 
   return (
@@ -24,7 +26,7 @@ export default function AppNavigation() {
         display:
           location.pathname === "/login" ||
           location.pathname === "/zalopayment" ||
-          location.pathname === "/createorder" ||
+          // location.pathname === "/createorder" ||
           location.pathname === "/paymentsuccess" ||
           location.pathname === "/"
             ? "none"
@@ -34,7 +36,7 @@ export default function AppNavigation() {
       onChange={handleChange}
     >
       <BottomNavigationAction
-        label="Trang chủ"
+        label={<p style={{ fontSize: "12px " }}>Trang chủ</p>}
         value="home"
         onClick={() => {
           navigate("/home");
@@ -42,7 +44,7 @@ export default function AppNavigation() {
         icon={<Home2 />}
       />
       <BottomNavigationAction
-        label="Đơn hàng"
+        label={<p style={{ fontSize: "12px " }}>Đơn hàng</p>}
         value="orders"
         onClick={() => {
           navigate("/order");
@@ -50,7 +52,15 @@ export default function AppNavigation() {
         icon={<Note />}
       />
       <BottomNavigationAction
-        label="Thực đơn"
+        label={<p style={{ fontSize: "12px " }}>Giỏ Hàng</p>}
+        value="createorder"
+        onClick={() => {
+          navigate("/createorder");
+        }}
+        icon={<ShoppingCart />}
+      />
+      <BottomNavigationAction
+        label={<p style={{ fontSize: "12px " }}>Thực đơn</p>}
         value="menu"
         onClick={() => {
           navigate("/menu");
@@ -58,7 +68,7 @@ export default function AppNavigation() {
         icon={<Book />}
       />
       <BottomNavigationAction
-        label="Cá nhân"
+        label={<p style={{ fontSize: "12px " }}>Cá nhân</p>}
         value="profile"
         onClick={() => {
           navigate("/profile");
