@@ -301,8 +301,6 @@ const CreateOrder = () => {
           position: "fixed",
           bottom: 0,
           marginBottom: 55,
-          backgroundColor: "white ",
-          width: "100%",
         }}
       >
         <div
@@ -327,7 +325,6 @@ const CreateOrder = () => {
             display: "flex",
             justifyContent: "flex-end",
             marginRight: "20px",
-            paddingBottom: 8,
           }}
         >
           {isDone ? (

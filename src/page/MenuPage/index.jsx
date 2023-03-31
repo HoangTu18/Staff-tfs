@@ -9,6 +9,7 @@ import { formatToVND } from "../../utils/numberUtil";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { addToCart } from "./cartSlice";
 import { hover } from "@testing-library/user-event/dist/hover";
+import "./index.css";
 import axios from "axios";
 import { API_URL } from "../../utils/constant";
 const MenuPage = () => {
@@ -18,9 +19,9 @@ const MenuPage = () => {
   );
   const [listFood, setListFood] = useState([]);
   useEffect(() => {
-    axios.get(API_URL + "/category/1").then((response) => {
-      setListFood(response.data.foodList)
-    })
+    axios.get(API_URL + "/categories/2").then((response) => {
+      setListFood(response.data.foodList);
+    });
     dispatch(getCategoryRequest());
   }, []);
 
@@ -80,7 +81,10 @@ const MenuPage = () => {
           {listFood.map((item, index) => {
             return (
               <Grid item xs={6} key={`${item.id}`}>
-                <Box sx={styles.contentContainer}>
+                <Box
+                  className="menu-item-container overlay"
+                  onClick={() => handleAddtoCart(item)}
+                >
                   <img style={styles.image} src={item.imgUrl} alt="" />
                   <Stack sx={styles.contentInfor}>
                     <Box
@@ -106,7 +110,7 @@ const MenuPage = () => {
                       >
                         {formatToVND(item.price)}đ
                       </Box>
-                      <div style={styles.cartIcon}>
+                      <div className="button-cart">
                         <AddShoppingCartIcon
                           style={{
                             position: "absolute",

@@ -171,9 +171,9 @@ const CreateOrder = () => {
             <h3 className="order-customer">{cart.cartItems.length}</h3>
           </div>
         </div>
-        {/* <div className="order-calender">
+        <div className="order-calender">
           <p className="date">Khách hàng</p>
-        </div> */}
+        </div>
         {/* <div className="order-item">
           <PhoneAndroidIcon className="icon" />
           <input
@@ -295,16 +295,7 @@ const CreateOrder = () => {
           );
         })}
       </div>
-      <div
-        className="create-order"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          marginBottom: 55,
-          backgroundColor: "white ",
-          width: "100%",
-        }}
-      >
+      <div className="create-order">
         <div
           style={{
             display: "flex",
@@ -327,7 +318,6 @@ const CreateOrder = () => {
             display: "flex",
             justifyContent: "flex-end",
             marginRight: "20px",
-            paddingBottom: 8,
           }}
         >
           {isDone ? (

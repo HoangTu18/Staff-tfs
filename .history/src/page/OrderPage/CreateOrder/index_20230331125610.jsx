@@ -300,9 +300,8 @@ const CreateOrder = () => {
         style={{
           position: "fixed",
           bottom: 0,
-          marginBottom: 55,
+          marginBottom: 58,
           backgroundColor: "white ",
-          width: "100%",
         }}
       >
         <div

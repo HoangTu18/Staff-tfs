@@ -302,7 +302,6 @@ const CreateOrder = () => {
           bottom: 0,
           marginBottom: 55,
           backgroundColor: "white ",
-          width: "100%",
         }}
       >
         <div

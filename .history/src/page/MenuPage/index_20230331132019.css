@@ -1,0 +1,16 @@
+.button-cart {
+  padding: 10px;
+  background-color: rgb(216, 58, 58);
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border-radius: 15px;
+}
+.button-cart:active {
+  padding: 10px;
+  background-color: rgb(255, 76, 76);
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border-radius: 15px;
+}
