@@ -169,8 +169,10 @@ function OrderDetail() {
           </div>
         </div>
       </div>
+
       <div
         style={{
+          display: order.status === "done" ? ("none") : ("block"),
           padding: "15px 0",
           margin: "auto",
           marginLeft: "20%",
@@ -185,7 +187,11 @@ function OrderDetail() {
           variant="contained"
           onClick={() => handleChangeStatus(order)}
         >
-          Xác nhận
+          {order.status === "pending" ? (
+            "Xác nhận"
+          ) : (order.status === "accept" ? (
+            "Giao hàng"
+          ) : ("Hoàn Thành"))}
         </Button>
       </div>
     </div>
