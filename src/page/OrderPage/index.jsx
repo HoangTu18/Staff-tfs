@@ -135,7 +135,7 @@ const OrderPage = () => {
           <option value="3">Chờ xác nhận</option>
           <option value="4">Đang giao hàng</option>
           <option value="5">Đã nhận hàng</option>
-          <option value="6">Huỷ đơn</option>
+          {/* <option value="6">Huỷ đơn</option> */}
         </select>
         <div className="order-list">
           {filterlistOrder.length === 0 ? (
