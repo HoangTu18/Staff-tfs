@@ -33,6 +33,7 @@ function App() {
     <div>
       <Router>
         <Loading />
+        <ToastContainer/>
         <Routes>
           <Route path="" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
