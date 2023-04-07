@@ -39,7 +39,7 @@ const ProfilePage = () => {
                 console.log("check");
               }}
             >
-              <PhotoCameraRoundedIcon style={styles.badgeStyle} />
+              {/* <PhotoCameraRoundedIcon style={styles.badgeStyle} /> */}
             </Box>
           }
         >

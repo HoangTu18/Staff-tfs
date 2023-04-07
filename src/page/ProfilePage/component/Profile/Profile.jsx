@@ -35,9 +35,9 @@ const Profile = () => {
         <Stack
           flexDirection="row"
           style={styles.optionStyle}
-          onClick={() => {
-            navigate("/editprofile");
-          }}
+          // onClick={() => {
+          //   navigate("/editprofile");
+          // }}
         >
           <Stack flexDirection="row">
             <PhoneAndroidIcon style={styles.icons} />
@@ -45,14 +45,14 @@ const Profile = () => {
               {staff?.theAccountForStaff?.phoneNumber}
             </Box>
           </Stack>
-          <EditIcon />
+          {/* <EditIcon /> */}
         </Stack>
         <Stack
           flexDirection="row"
           style={styles.optionStyle}
-          onClick={() => {
-            navigate("/editprofile");
-          }}
+          // onClick={() => {
+          //   navigate("/editprofile");
+          // }}
         >
           <Stack flexDirection="row">
             <MailIcon style={styles.icons} />
@@ -60,7 +60,7 @@ const Profile = () => {
               {staff?.staffEmail}
             </Box>
           </Stack>
-          <EditIcon />
+          {/* <EditIcon /> */}
         </Stack>
         {/* <Stack
           flexDirection="row"
