@@ -86,12 +86,14 @@ function OrderDetail() {
         </p>
       </div>
 
-      <StateList
-        status={order.status ?? ""}
-        orderDate={order.orderDate ?? ""}
-        deliveryDate={order.deliveryDate ?? ""}
-        receiveTime={order.receiveTime ?? ""}
-      />
+      {order.customerId !== 16 && (
+        <StateList
+          status={order.status ?? ""}
+          orderDate={order.orderDate ?? ""}
+          deliveryDate={order.deliveryDate ?? ""}
+          receiveTime={order.receiveTime ?? ""}
+        />
+      )}
 
       <div className="order-detail__info item">
         <h5>Thông tin đơn hàng</h5>
@@ -172,7 +174,7 @@ function OrderDetail() {
 
       <div
         style={{
-          display: order.status === "done" ? ("none") : ("block"),
+          display: order.status === "done" ? "none" : "block",
           padding: "15px 0",
           margin: "auto",
           marginLeft: "20%",
@@ -187,11 +189,11 @@ function OrderDetail() {
           variant="contained"
           onClick={() => handleChangeStatus(order)}
         >
-          {order.status === "pending" ? (
-            "Xác nhận"
-          ) : (order.status === "accept" ? (
-            "Giao hàng"
-          ) : ("Hoàn Thành"))}
+          {order.status === "pending"
+            ? "Xác nhận"
+            : order.status === "accept"
+            ? "Giao hàng"
+            : "Hoàn Thành"}
         </Button>
       </div>
     </div>
