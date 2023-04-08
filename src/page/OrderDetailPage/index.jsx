@@ -112,14 +112,14 @@ function OrderDetail() {
               <div className="icon">
                 <img src="/images/check-icon.svg" alt="" />
               </div>
-              <p>Đã thanh toán</p>
+              {/* <p>Đã thanh toán</p> */}
             </div>
           ) : (
             <div className="pay">
               <div className="iconUnPay">
                 <img src="/images/wait-icon.svg" alt="" />
               </div>
-              <p className="unpay">Chưa thanh toán</p>
+              {/* <p className="unpay">Chưa thanh toán</p> */}
             </div>
           )}
           <p>
