@@ -218,7 +218,7 @@ function OrderDetail() {
               {/* <p className="unpay">Chưa thanh toán</p> */}
             </div>
           )}
-          <p style={{ marginTop: "3px", marginLeft: "5px" }}>
+          <p style={{ marginTop: "3px", marginLeft: 3px }}>
             {order.paymentMethod === "cash" ? "Tiền mặt" : order.paymentMethod}
           </p>
         </div>

@@ -184,6 +184,7 @@ function OrderDetail() {
 
       {order.customerId !== 16 && (
         <StateList
+          style={{ color: "#198754" }}
           status={order.status ?? ""}
           orderDate={order.orderDate ?? ""}
           deliveryDate={order.deliveryDate ?? ""}
