@@ -17,7 +17,9 @@ import { ORDER } from "../../utils/constant";
 function OrderDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  let order = JSON.parse(localStorage.getItem(ORDER));
+  const order = JSON.parse(localStorage.getItem(ORDER));
+
+  console.log("Order: ", order);
 
   const backToOrderPage = () => {
     navigate("/order");
@@ -43,6 +45,100 @@ function OrderDetail() {
       return data.theAccount.phoneNumber ?? "";
     }
     return "";
+  };
+
+  const ItemList = () => {
+    if (order.itemList.length !== 0)
+      return (
+        <>
+          <h5>Danh sách sản phẩm</h5>
+          {order.itemList.map((item, index) => {
+            return (
+              <div className="box" key={index}>
+                <div className="image">
+                  <img src={item.image} alt="" />
+                </div>
+                <div className="info">
+                  <div className="">
+                    <p>{item.name}</p>
+                    <span>{formatToVND(item.subTotal)}</span>
+                  </div>
+                  <span>Số lượng: {item.quantity} cái</span>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      );
+    return <></>;
+  };
+
+  const ServiceList = () => {
+    if (order.serviceList.length !== 0)
+      return (
+        <>
+          <div style={{ marginTop: "20px" }} />
+          <h5>Danh sách dịch vụ</h5>
+          {order.serviceList.map((item, index) => {
+            return (
+              <div className="box" key={index}>
+                <div className="image">
+                  <img src={item.serviceImage} alt="" />
+                </div>
+                <div className="info">
+                  <div className="">
+                    <p>{item.serviceName}</p>
+                    <span>{formatToVND(item.servicePrice)}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      );
+    return <></>;
+  };
+
+  const PartyList = () => {
+    if (order.party !== null)
+      return (
+        <>
+          <div style={{ marginTop: "20px" }} />
+          <h5>Danh sách Party</h5>
+          {order.party.itemList.map((item, index) => {
+            return (
+              <div className="box" key={index}>
+                <div className="image">
+                  <img src={item.foodImage} alt="foodImage" />
+                </div>
+                <div className="info">
+                  <div className="">
+                    <p>{item.foodName}</p>
+                    <span>{formatToVND(item.price)}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          <div className="box">
+            <div className="image">
+              <img
+                src={order.party.partyTemplate}
+                alt="foodImage"
+                style={{ width: "50px", height: "50px" }}
+              />
+            </div>
+            <div className="info">
+              <div className="">
+                <p>Party: {order.party.partyName}</p>
+                <span>{formatToVND(order.party.totalPrice)}</span>
+              </div>
+              <span>Số lượng: {order.party.quantity} cái</span>
+            </div>
+          </div>
+        </>
+      );
+    return <></>;
   };
 
   const handleChangeStatus = (order) => {
@@ -86,12 +182,14 @@ function OrderDetail() {
         </p>
       </div>
 
-      <StateList
-        status={order.status ?? ""}
-        orderDate={order.orderDate ?? ""}
-        deliveryDate={order.deliveryDate ?? ""}
-        receiveTime={order.receiveTime ?? ""}
-      />
+      {order.customerId !== 16 && (
+        <StateList
+          status={order.status ?? ""}
+          orderDate={order.orderDate ?? ""}
+          deliveryDate={order.deliveryDate ?? ""}
+          receiveTime={order.receiveTime ?? ""}
+        />
+      )}
 
       <div className="order-detail__info item">
         <h5>Thông tin đơn hàng</h5>
@@ -110,14 +208,14 @@ function OrderDetail() {
               <div className="icon">
                 <img src="/images/check-icon.svg" alt="" />
               </div>
-              <p>Đã thanh toán</p>
+              {/* <p>Đã thanh toán</p> */}
             </div>
           ) : (
             <div className="pay">
               <div className="iconUnPay">
                 <img src="/images/wait-icon.svg" alt="" />
               </div>
-              <p className="unpay">Chưa thanh toán</p>
+              {/* <p className="unpay">Chưa thanh toán</p> */}
             </div>
           )}
           <p>
@@ -127,30 +225,10 @@ function OrderDetail() {
       </div>
 
       <div className="order-detail__product item">
-        <h5>Danh sách sản phẩm</h5>
-        {order.itemList.length === 0 ? (
-          <h2>Có đơn mà không có sản phẩm đó</h2>
-        ) : (
-          order.itemList.map((item, index) => {
-            return (
-              <div className="box" key={index}>
-                <div className="image">
-                  <img src={item.image} alt="" />
-                </div>
-                <div className="info">
-                  <div className="">
-                    <p>{item.name}</p>
-                    <span>{formatToVND(item.subTotal)}</span>
-                  </div>
-                  <span>{formatToVND(item.price)} đ/ cái</span>
-                  <span>Số lượng: {item.quantity} cái</span>
-                </div>
-              </div>
-            );
-          })
-        )}
+        <ItemList />
+        <ServiceList />
+        <PartyList />
       </div>
-
       <div className="order-detail__price">
         <div className="box">
           <div className="item">
