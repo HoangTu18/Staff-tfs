@@ -194,7 +194,7 @@ function OrderDetail() {
       <div className="order-detail__info item">
         <h5>Thông tin đơn hàng</h5>
         <div className="box">
-          <h3>Khách hàng: {getNameByCusId(order.customerId)}</h3>
+          <h3>Khách hàng: {order.customerName}</h3>
           <p>Địa chỉ nhận hàng: {order.deliveryAddress}</p>
           {/* <span>SĐT: {getPhoneByCusId(order.customerId)}</span> */}
         </div>
