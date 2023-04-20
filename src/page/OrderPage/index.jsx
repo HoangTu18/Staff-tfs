@@ -152,9 +152,7 @@ const OrderPage = () => {
               >
                 <div className="left">
                   <h3 className="orderID">#{item.id}</h3>
-                  <h3 className="order-customer">
-                    {getNameByCusId(item.customerId)}
-                  </h3>
+                  <h3 className="order-customer">{item.customerName}</h3>
                   <div className="order-products">
                     {item.totalQuantity} sản phẩm
                   </div>
