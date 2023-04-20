@@ -1,3 +1,11 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
 .order-page {
   padding-bottom: 45px;
 }
@@ -47,9 +55,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 15px;
-  border-color: redbredlack;
-}
-.order-page .order-item .icon {
+  border-color: transparent;
 }
 
 .order-page .order-item .orderID {
