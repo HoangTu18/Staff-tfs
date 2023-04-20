@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+import PersonIcon from '@mui/icons-material/Person';
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,23 +21,24 @@ import moment from "moment";
 import { ACCOUNT, API_URL } from "../../../utils/constant";
 import { insertOrderRequest } from "../orderSlice";
 import axios from "axios";
+
 const CreateOrder = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [phone, setPhone] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [payment, setPayment] = useState("cash");
   const [isDone, setIsDone] = useState(true);
   const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
-  const handlePhone = (event) => {
-    setPhone(event.target.value);
-  };
   const cart = useSelector((state) => state.cart);
   const restaurant = useSelector((state) => state.restaurantManage.restaurant);
   const listOrder = useSelector((state) => state.orderManage.listOrder);
-  useEffect(() => {
-    dispatch(getTotals());
-    dispatch(getRestaurantRequest(staffData1.theRestaurant.restaurantId));
-  }, [cart]);
-  const [payment, setPayment] = useState("cash");
+  const handlePhone = (event) => {
+    setPhone(event.target.value);
+  };
+  const handleFullName = (event) => {
+    setFullName(event.target.value);
+  };
   const listPayment = [
     {
       value: "cash",
@@ -50,12 +51,15 @@ const CreateOrder = () => {
       icon: require("../../../assets/icon/zalo.png"),
     },
   ];
+
   const handleIncrease = (item) => {
     dispatch(addToCart(item));
   };
+
   const handleDecrease = (item) => {
     dispatch(decreaseCart(item));
   };
+
   const handleZaloPayment = (order) => {
     setIsDone(false);
     axios
@@ -100,11 +104,13 @@ const CreateOrder = () => {
     let url = API_URL + "/orders/checkPayment/";
     // navigate("/zalopayment", {order: item});
   };
+
   const handleDeleteCart = (payload) => {
     dispatch(insertOrderRequest(payload));
     dispatch(deleteCart());
     navigate("/home");
   };
+
   const handleCreate = () => {
     const data = [];
     if (cart.cartItems.length > 0) {
@@ -120,6 +126,8 @@ const CreateOrder = () => {
       const payload = {
         id: 0,
         paymentMethod: payment,
+        fullName: fullName,
+        phone: phone,
         customerId: 16,
         restaurantId: restaurant.restaurantId,
         staffId: staffData1.staffId,
@@ -133,6 +141,11 @@ const CreateOrder = () => {
       navigate("/menu");
     }
   };
+
+  useEffect(() => {
+    dispatch(getTotals());
+    dispatch(getRestaurantRequest(staffData1.theRestaurant.restaurantId));
+  }, [cart]);
 
   return (
     <Box
@@ -171,10 +184,21 @@ const CreateOrder = () => {
             <h3 className="order-customer">{cart.cartItems.length}</h3>
           </div>
         </div>
-        {/* <div className="order-calender">
+        <div className="order-calender">
           <p className="date">Khách hàng</p>
-        </div> */}
-        {/* <div className="order-item">
+        </div>
+        <div className="order-item">
+          <PersonIcon className="icon" />
+          <input
+            className="phonenumber-customer"
+            placeholder="Tên khách hàng"
+            type="text"
+            id="fullName"
+            name="fullName"
+            onChange={handleFullName}
+          />
+        </div>
+        <div className="order-item">
           <PhoneAndroidIcon className="icon" />
           <input
             className="phonenumber-customer"
@@ -184,7 +208,7 @@ const CreateOrder = () => {
             name="phone"
             onChange={handlePhone}
           />
-        </div> */}
+        </div>
         <div className="order-calender">
           <p className="date">Phương thức thanh toán</p>
         </div>
