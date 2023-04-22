@@ -196,7 +196,7 @@ function OrderDetail() {
         <div className="box">
           <h3>Khách hàng: {order.customerName}</h3>
           <p>Địa chỉ nhận hàng: {order.deliveryAddress}</p>
-          <span>SĐT: {order.customerPhoneNumber}</span>
+          {/* <span>SĐT: {getPhoneByCusId(order.customerId)}</span> */}
         </div>
       </div>
 

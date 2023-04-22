@@ -1,5 +1,5 @@
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import PersonIcon from "@mui/icons-material/Person";
+import PersonIcon from '@mui/icons-material/Person';
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -126,8 +126,8 @@ const CreateOrder = () => {
       const payload = {
         id: 0,
         paymentMethod: payment,
-        customerName: fullName,
-        customerPhoneNumber: phone,
+        fullName: fullName,
+        phone: phone,
         customerId: 16,
         restaurantId: restaurant.restaurantId,
         staffId: staffData1.staffId,

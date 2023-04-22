@@ -118,7 +118,7 @@ const MenuPage = () => {
                             top: "5px",
                             right: "2px",
                           }}
-                          onClick={() => handleAddtoCart(item)}
+                          // onClick={() => handleAddtoCart(item)}
                         />
                       </div>
                     </Stack>
