@@ -17,18 +17,27 @@ export default function AppNavigation() {
   const [list, setList] = useState([]);
   const [prev, setPrev] = useState(0);
   const [isNoti, setIsNoti] = useState(false);
+  const {pathname} = location
   const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
   useEffect(()=>{
-    if(staffData1){
+    if(localStorage.getItem(ACCOUNT)){
       setCount(1)
+      setPrev(0)
+    }else{
+      setPrev(0)
+      setList([])
     }
-  },[staffData1])
+  },[localStorage.getItem(ACCOUNT)])
   useEffect(() => {
     // setCur(list.length);
+    // console.log("prev", prev);
+    // console.log("curent", list.length);
     if (prev !== list.length) {
       if (prev !== 0 || list.length === 1) {
+      if(localStorage.getItem(ACCOUNT)){
         toast.success("Bạn có đơn hàng mới", { position: "top-center" });
         setIsNoti(true);
+      }
       }
     }
 
@@ -36,6 +45,7 @@ export default function AppNavigation() {
       fetchData();
       setCount((prevCount) => prevCount + 1);
       setPrev(list.length);
+      // console.log(list.length);
     }, 1000);
 
     if (staffData1 === null) {
@@ -51,7 +61,9 @@ export default function AppNavigation() {
           staffData1.theAccountForStaff.accountId
       )
       .then((res) => {
+       if(pathname !=="/profile"){
         setList(res.data);
+       }
       })
       .catch((err) => {
         alert("Đã có lỗi xảy ra, vui lòng thử lại sau");
@@ -62,21 +74,13 @@ export default function AppNavigation() {
     setValue(newValue);
   };
   useEffect(() => {
-    if (location.pathname === "/menu") {
+    if (pathname === "/menu") {
       setValue("menu");
+    } else if (pathname === "/" || pathname === "/login"){
+      setPrev(0)
+      setList([])
     }
-  }, [location]);
-  const handleNoti = useCallback(() => {
-    return (
-      <ReactHowler
-        src={NotificationSound}
-        onEnd={() => {
-          setIsNoti(false);
-        }}
-        playing={isNoti}
-      />
-    );
-  }, [isNoti]);
+  }, [pathname]);
   return (
     <BottomNavigation
       sx={{
@@ -84,11 +88,11 @@ export default function AppNavigation() {
         position: "fixed",
         bottom: 0,
         display:
-          location.pathname === "/login" ||
-          location.pathname === "/zalopayment" ||
-          // location.pathname === "/createorder" ||
-          location.pathname === "/paymentsuccess" ||
-          location.pathname === "/"
+          pathname === "/login" ||
+          pathname === "/zalopayment" ||
+          // pathname === "/createorder" ||
+          pathname === "/paymentsuccess" ||
+          pathname === "/"
             ? "none"
             : "flex",
       }}
@@ -100,6 +104,7 @@ export default function AppNavigation() {
         onEnd={() => {
           setIsNoti(false);
         }}
+        
         playing={isNoti}
       />
       <BottomNavigationAction
