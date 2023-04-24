@@ -131,7 +131,7 @@ const OrderPage = () => {
         <h2 className="order-sum">Tổng đơn hàng: {filterlistOrder.length}</h2>
         <select className="filter" onChange={handleOnChange}>
           <option value="1">Tất cả</option>
-          <option value="2">Chờ nhận đơn</option>
+          {/* <option value="2">Chờ nhận đơn</option> */}
           <option value="3">Chờ xác nhận</option>
           <option value="4">Đang giao hàng</option>
           <option value="5">Đã nhận hàng</option>

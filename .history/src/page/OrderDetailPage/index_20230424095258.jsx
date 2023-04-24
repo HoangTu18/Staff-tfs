@@ -235,10 +235,10 @@ function OrderDetail() {
             <span>Đơn giá</span>
             <span>{formatToVND(order.totalPrice)}</span>
           </div>
-          {/* <div className="item">
+          <div className="item">
             <span>Giảm giá</span>
             <span>{formatToVND(0)}</span>
-          </div> */}
+          </div>
           <div className="item">
             <span>
               <strong>Khách hàng phải trả</strong>

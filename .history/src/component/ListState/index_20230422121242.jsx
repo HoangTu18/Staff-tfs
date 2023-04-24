@@ -65,11 +65,11 @@ function StateList(props) {
         state={done}
         title={"Hoàn tất"}
       />
-      {/* <State
+      <State
         // time={formatStringToDate(props.orderDate.split("T")[0])}
         state={deny}
         title={"Huỷ"}
-      /> */}
+      />
     </div>
   );
 }
