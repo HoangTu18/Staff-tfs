@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { formatToVND } from "../../utils/numberUtil";
 import { getOrderRequest } from "../OrderPage/orderSlice";
 import { getRestaurantRequest } from "../HomePage/restaurantSlice";
-import { ACCOUNT } from "../../utils/constant";
+import { ACCOUNT, API_URL } from "../../utils/constant";
 import "./index.css";
+import axios from "axios";
 const HomePage = () => {
+ 
   const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
   // const staffData = {
   //   staffId: 8,
@@ -35,6 +37,7 @@ const HomePage = () => {
     dispatch(getOrderRequest(staffData1.staffId));
     dispatch(getRestaurantRequest(staffData1.theRestaurant.restaurantId));
   }, [dispatch]);
+
 
   const totalRevenue = () => {
     let total = 0;

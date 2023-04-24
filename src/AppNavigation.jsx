@@ -3,11 +3,61 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import { Home2, Note, Book, ProfileCircle, ShoppingCart } from "iconsax-react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { ACCOUNT, API_URL } from "./utils/constant";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useCallback } from "react";
+import ReactHowler from "react-howler";
+import NotificationSound from "./assets/notification2.mp3";
 export default function AppNavigation() {
   const [value, setValue] = useState("home");
   const navigate = useNavigate();
   const location = useLocation();
+  const [count, setCount] = useState(1);
+  const [list, setList] = useState([]);
+  const [prev, setPrev] = useState(0);
+  const [isNoti, setIsNoti] = useState(false);
+  const staffData1 = JSON.parse(localStorage.getItem(ACCOUNT));
+  useEffect(()=>{
+    if(staffData1){
+      setCount(1)
+    }
+  },[staffData1])
+  useEffect(() => {
+    // setCur(list.length);
+    if (prev !== list.length) {
+      if (prev !== 0 || list.length === 1) {
+        toast.success("Bạn có đơn hàng mới", { position: "top-center" });
+        setIsNoti(true);
+      }
+    }
+
+    const interval = setInterval(() => {
+      fetchData();
+      setCount((prevCount) => prevCount + 1);
+      setPrev(list.length);
+    }, 1000);
+
+    if (staffData1 === null) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [count]);
+
+  const fetchData = () => {
+    axios
+      .get(
+        `${API_URL}/notifications/byaccount/` +
+          staffData1.theAccountForStaff.accountId
+      )
+      .then((res) => {
+        setList(res.data);
+      })
+      .catch((err) => {
+        alert("Đã có lỗi xảy ra, vui lòng thử lại sau");
+      });
+  };
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -16,7 +66,17 @@ export default function AppNavigation() {
       setValue("menu");
     }
   }, [location]);
-
+  const handleNoti = useCallback(() => {
+    return (
+      <ReactHowler
+        src={NotificationSound}
+        onEnd={() => {
+          setIsNoti(false);
+        }}
+        playing={isNoti}
+      />
+    );
+  }, [isNoti]);
   return (
     <BottomNavigation
       sx={{
@@ -35,6 +95,13 @@ export default function AppNavigation() {
       value={value}
       onChange={handleChange}
     >
+      <ReactHowler
+        src={NotificationSound}
+        onEnd={() => {
+          setIsNoti(false);
+        }}
+        playing={isNoti}
+      />
       <BottomNavigationAction
         label={<p style={{ fontSize: "12px " }}>Trang chủ</p>}
         value="home"
