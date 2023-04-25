@@ -1,0 +1,10 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d83a3a;
+}
+
+.noti-order {
+  background: wheat;
+}

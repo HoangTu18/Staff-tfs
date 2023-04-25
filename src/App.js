@@ -22,6 +22,7 @@ import LoginPage from "./page/LoginPage";
 import { ACCOUNT } from "./utils/constant";
 import { useEffect, useState } from "react";
 import ZalopaySuccess from "./page/ZaloPaymentPage/ZalopaySuccess";
+import Notification from "./page/ProfilePage/component/Notification";
 // import Password from "./page/ProfilePage/component/ChangePassword/Password";
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
     <div>
       <Router>
         <Loading />
-        <ToastContainer/>
+        <ToastContainer />
         <Routes>
           <Route path="" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -50,6 +51,7 @@ function App() {
           <Route path="profiledetail" element={<Profile />} />
           <Route path="editprofile" element={<EditProfile />} />
           <Route path="setting" element={<Setting />} />
+          <Route path="notification" element={<Notification />} />
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="success" element={<Success />} />
           <Route path="zalopayment" element={<ZaloPaymentPage />} />
