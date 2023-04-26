@@ -8,12 +8,14 @@
 
 .noti-order {
   margin-top: 15px;
+  padding: 0 15px;
 }
 
 .noti-order-item {
   background: wheat;
   padding: 15px;
   margin-bottom: 15px;
+  border-radius: 8px;
 }
 
 .noti-order-item p {
