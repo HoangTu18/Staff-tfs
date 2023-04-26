@@ -2,6 +2,8 @@ import { all } from "redux-saga/effects";
 import * as orderManageSaga from "./orderSaga";
 import * as categoryManageSaga from "./categorySaga";
 import * as restaurantManageSaga from "./restaurantSaga";
+import * as notificaitonManageSaga from "./notificationSaga";
+
 export default function* rootSaga() {
   yield all([
     orderManageSaga.followActiongetOrders(),
@@ -11,5 +13,6 @@ export default function* rootSaga() {
     orderManageSaga.followActionInsertOrderStatus(),
     categoryManageSaga.followActiongetCategory(),
     restaurantManageSaga.followActiongetRestaurantById(),
+    notificaitonManageSaga.followActiongetNoti(),
   ]);
 }

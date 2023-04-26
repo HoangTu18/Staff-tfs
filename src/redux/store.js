@@ -6,6 +6,7 @@ import orderReducer from "../page/OrderPage/orderSlice";
 import categoryReducer from "../page/MenuPage/categorySlice";
 import restaurantReducer from "../page/HomePage/restaurantSlice";
 import cartReducer from "../page/MenuPage/cartSlice";
+import notificationSlice from "../page/ProfilePage/component/Notification/notificationSlice";
 const saga = createSagaMiddleware();
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     categoryManage: categoryReducer,
     restaurantManage: restaurantReducer,
     cart: cartReducer,
+    notiManage: notificationSlice,
   },
   middleware: [saga],
 });
