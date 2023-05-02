@@ -29,7 +29,7 @@ const ProfilePage = () => {
         paddingRight: "16px",
       }}
     >
-      <Stack style={styles.avatarContainer} direction="row" spacing={2}>
+      <Stack style={styles.avatarContainer} direction="row" >
         <Badge
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -49,6 +49,17 @@ const ProfilePage = () => {
             src={staff.staffAvatarUrl}
           />
         </Badge>
+      </Stack>
+      <Stack
+        style={{
+          width: "100%",
+          justifyContent: "center",
+          marginTop:-20,
+          paddingBottom: "50px",
+        }}
+        direction="row"
+      >
+        <p style={{fontSize: 20, fontWeight: "semi"}}>{staff?.staffFullName}</p>
       </Stack>
       <Stack
         flexDirection="row"
@@ -115,7 +126,6 @@ const styles = {
     width: "100%",
     justifyContent: "center",
     marginTop: 50,
-    marginBottom: 50,
     paddingBottom: "50px",
   },
   imageStyle: {
