@@ -118,7 +118,6 @@ const CreateOrder = () => {
         data.push({
           id: item.id,
           price: item.price,
-          name: item.foodName,
           quantity: item.quantity,
           subTotal: item.price * item.quantity,
           image: item.imgUrl,
